@@ -7,7 +7,6 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(BoxCollider2D))]
-[RequireComponent(typeof(Animator))]
 
 #endregion
 public class EleController : ObserverSubjects
@@ -31,10 +30,10 @@ public class EleController : ObserverSubjects
     private void Awake()
     {
         myRb = GetComponent<Rigidbody2D>();
-        myAnim = GetComponent<Animator>();
+        myAnim = GetComponentInChildren<Animator>();
     }
     
-    void Start()
+    private void Start()
     {
         isRight = true;
     }
@@ -42,13 +41,13 @@ public class EleController : ObserverSubjects
     private void FixedUpdate()
     {
         EleMove();
-        EleAnimation();
-        EleDirection();
+        EleJump();
     }
 
     private void Update()
     {
-        EleJump();
+        EleAnimation();
+        EleDirection();
     }
 
     #endregion
