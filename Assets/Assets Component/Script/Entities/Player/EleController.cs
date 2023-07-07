@@ -41,11 +41,12 @@ public class EleController : ObserverSubjects
     private void FixedUpdate()
     {
         EleMove();
-        EleJump();
+        
     }
 
     private void Update()
     {
+        EleJump();
         EleAnimation();
         EleDirection();
     }
@@ -58,11 +59,10 @@ public class EleController : ObserverSubjects
     {
         float moveX;
         moveX = Input.GetAxisRaw("Horizontal");
-
-        playerMoveInput = new Vector2(moveX, playerMoveInput.y);
-        playerMoveInput.Normalize();
         
-        myRb.velocity = playerMoveInput * playerDataSO.PlayerSpeed;
+        playerMoveInput = new Vector2(moveX, 0);
+        playerMoveInput.Normalize();
+        myRb.velocity = new Vector2(playerMoveInput.x * playerDataSO.PlayerSpeed, myRb.velocity.y);
     }
 
     private void EleDirection()
@@ -99,7 +99,7 @@ public class EleController : ObserverSubjects
 
     private void EleJump()
     {
-        if (Input.GetKeyDown(KeyCode.W) && !IsGround())
+        if (Input.GetKeyDown(KeyCode.Space) && IsGround())
         {
             myRb.AddForce(Vector2.up * playerDataSO.PlayerJumpForce, ForceMode2D.Impulse);
             NotifyObservers(ActionEnum.Jump);

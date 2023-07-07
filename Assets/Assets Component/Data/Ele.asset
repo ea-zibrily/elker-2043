@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Ele
   m_EditorClassIdentifier: 
   playerName: Ele
-  <playerSpeed>k__BackingField: 6
-  <playerJumpForce>k__BackingField: 3.5
+  <PlayerSpeed>k__BackingField: 10
+  <PlayerJumpForce>k__BackingField: 15
