@@ -117,6 +117,7 @@ GameObject:
   - component: {fileID: 6028410301989365252}
   - component: {fileID: 1826778913}
   - component: {fileID: 1826778914}
+  - component: {fileID: 7946985360176031558}
   m_Layer: 0
   m_Name: Ceetez
   m_TagString: Enemy
@@ -138,7 +139,7 @@ Transform:
   m_Children:
   - {fileID: 7826097269555832344}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &1826778913
 Rigidbody2D:
@@ -202,3 +203,19 @@ CircleCollider2D:
   m_Offset: {x: -0.057702303, y: -0.26228404}
   serializedVersion: 2
   m_Radius: 0.53868556
+--- !u!114 &7946985360176031558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6028410301989365250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fcd6392baf592c49aadcf85b53cd0ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyDataSO: {fileID: 11400000, guid: 0d947f518f9a0c747b3f1ddecb87c703, type: 2}
+  isRight: 1
+  pointA: {fileID: 0}
+  pointB: {fileID: 0}

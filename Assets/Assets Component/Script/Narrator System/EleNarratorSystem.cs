@@ -6,10 +6,7 @@ using UnityEngine;
 public class EleNarratorSystem : MonoBehaviour, IObserver
 {
     public ObserverSubjects observerSubjects;
-
-    [Header("Reference")]
-    private EleController eleController;
-
+    
     private void OnEnable()
     {
         observerSubjects.AddObserver(this);
@@ -19,12 +16,7 @@ public class EleNarratorSystem : MonoBehaviour, IObserver
     {
         observerSubjects.RemoveObserver(this);
     }
-
-    private void Awake()
-    {
-        eleController = GameObject.FindGameObjectWithTag("Player").GetComponent<EleController>();
-    }
-
+    
     public void AddNotify(ActionEnum actionEnum)
     {
         switch (actionEnum)
@@ -46,7 +38,7 @@ public class EleNarratorSystem : MonoBehaviour, IObserver
                 
                 break;
             default:
-                Debug.LogError("ActionEnum not found");
+                Debug.LogError("Action Enum not found");
                 break;
         }
     }

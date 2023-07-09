@@ -3,10 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Rohox : EnemyBase
+public class EnemyMoveAlong : EnemyBase
 {
-    [Header("Rohox Component")]
-    [SerializeField] private bool isRight;
+    [Header("Move Along Component")]
     public WallDetector wallDetector;
 
     #region MonoBehaviour Callbacks
@@ -27,20 +26,14 @@ public class Rohox : EnemyBase
 
     private void RohoxMove()
     {
-        transform.Translate(Vector2.left * (enemyDataSO.enemyMoveSpeed * Time.deltaTime));
+        transform.Translate(Vector2.left * (enemyDataSO.EnemyMoveSpeed * Time.deltaTime));
         
         if (IsWall())
         {
-            RohoxFlip();
+            EnemyFlip();
         }
     }
 
-    private void RohoxFlip()
-    {
-        isRight = !isRight;
-        transform.Rotate(0f, 180f, 0f);
-    }
-    
     private bool IsWall()
     {
         return Physics2D.OverlapCircle(wallDetector.wallChecker.position, wallDetector.wallCheckerRadius,

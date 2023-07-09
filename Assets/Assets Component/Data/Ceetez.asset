@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 976b91f6e60a431db0db2233866ba4fd, type: 3}
-  m_Name: Rohox
+  m_Name: Ceetez
   m_EditorClassIdentifier: 
-  enemyName: Rohox
+  enemyName: Ceetez
   <EnemyMoveSpeed>k__BackingField: 5
-  enemyType: 0
+  enemyType: 1

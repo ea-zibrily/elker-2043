@@ -10,6 +10,7 @@ public class EnemyBase : MonoBehaviour
 
     [Header("Enemy Component")]
     public EnemyData enemyDataSO;
+    public bool isRight;
 
     #endregion
 
@@ -27,7 +28,11 @@ public class EnemyBase : MonoBehaviour
 
     #region Tsukuyomi Callbacks
 
-   
+    public void EnemyFlip()
+    {
+        isRight = !isRight;
+        transform.Rotate(0f, 180f, 0f);
+    }
 
     #endregion
 }

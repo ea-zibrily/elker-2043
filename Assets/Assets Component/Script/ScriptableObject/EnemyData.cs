@@ -4,6 +4,6 @@
 public class EnemyData : ScriptableObject
 {
     public string enemyName;
-    [field: SerializeField] public float enemyMoveSpeed {get; private set;}
+    [field: SerializeField] public float EnemyMoveSpeed {get; private set;}
     public EnemyType enemyType;
 }
