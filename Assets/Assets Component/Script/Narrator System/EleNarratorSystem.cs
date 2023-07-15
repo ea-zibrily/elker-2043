@@ -31,7 +31,7 @@ public class EleNarratorSystem : MonoBehaviour, IObserver
                 break;
             case ActionEnum.Jump:
                 // Some logic
-                Debug.Log("Jump");
+                
                 break;
             case ActionEnum.Caught:
                 // Some logic
