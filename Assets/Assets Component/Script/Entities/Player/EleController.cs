@@ -62,6 +62,7 @@ public class EleController : ObserverSubjects
         
         playerMoveInput = new Vector2(moveX, 0);
         playerMoveInput.Normalize();
+        
         myRb.velocity = new Vector2(playerMoveInput.x * playerDataSO.PlayerSpeed, myRb.velocity.y);
     }
 
