@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class HoldController : EnvironmentBase
+public class HackComputerController : EnvironmentBase
 {
     #region Variable
 

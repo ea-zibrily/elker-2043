@@ -11,6 +11,7 @@ public class EnemyBase : MonoBehaviour
     [Header("Enemy Component")]
     public EnemyData enemyDataSO;
     public bool isRight;
+    [HideInInspector] public bool isCaughted;
 
     #endregion
 

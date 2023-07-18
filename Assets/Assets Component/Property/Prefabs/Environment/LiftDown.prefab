@@ -303,7 +303,7 @@ Transform:
   - {fileID: 5976500852814391328}
   - {fileID: 6835681893168309351}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &6574509632061532356
 BoxCollider2D:
@@ -363,7 +363,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonAlertText: Press Z to Interact
-  buttonAlertTextUI: {fileID: 0}
+  buttonAlertTextUI: {fileID: 5823192622837073774}
   liftPoint: {fileID: 0}
 --- !u!1 &7002972238004900679
 GameObject:

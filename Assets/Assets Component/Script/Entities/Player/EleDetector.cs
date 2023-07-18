@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider2D))]
-public class EleDetector : MonoBehaviour
+public class EleDetector : ObserverSubjects
 {
-   public event Action OnCaught;
+   public List<EnemyBase> enemyDetected {get; set;}
 
    private void Start()
    {
@@ -22,7 +22,9 @@ public class EleDetector : MonoBehaviour
    {
       if (other.CompareTag("Enemy"))
       {
-         OnCaught?.Invoke();
+         Debug.Log($"{other.gameObject.name} is detected");
+         enemyDetected.Add(other.gameObject.GetComponent<EnemyBase>());
+         NotifyObservers(ActionEnum.Caught);
       }
    }
 }

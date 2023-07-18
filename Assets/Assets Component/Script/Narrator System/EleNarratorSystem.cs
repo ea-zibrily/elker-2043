@@ -5,16 +5,22 @@ using UnityEngine;
 
 public class EleNarratorSystem : MonoBehaviour, IObserver
 {
-    public ObserverSubjects observerSubjects;
-    
+    public ObserverSubjects[] observerSubjects;
+    private GameEvent gameEvent;
+
+    private void Awake()
+    {
+        gameEvent = GameObject.Find("GameEvent").GetComponent<GameEvent>();
+    }
+
     private void OnEnable()
     {
-        observerSubjects.AddObserver(this);
+        InitializeSubject();
     }
 
     private void OnDisable()
     {
-        observerSubjects.RemoveObserver(this);
+        RemoveSubject();
     }
     
     public void AddNotify(ActionEnum actionEnum)
@@ -34,12 +40,34 @@ public class EleNarratorSystem : MonoBehaviour, IObserver
                 
                 break;
             case ActionEnum.Caught:
-                // Some logic
+                Debug.Log("Caught");
                 
+                // Camera Shake Logic
+                // Audio Logic
+                
+                observerSubjects[0].gameObject.GetComponent<EleController>().isCaught = true;
+                observerSubjects[1].gameObject.GetComponent<EleDetector>().enemyDetected[0].isCaughted = true;
+                gameEvent.GameOverEvent();
                 break;
             default:
                 Debug.LogError("Action Enum not found");
                 break;
+        }
+    }
+
+    private void InitializeSubject()
+    {
+        for (int i = 0; i < observerSubjects.Length; i++)
+        {
+            observerSubjects[i].AddObserver(this);
+        }
+    }
+    
+    private void RemoveSubject()
+    {
+        for (int i = 0; i < observerSubjects.Length; i++)
+        {
+            observerSubjects[i].RemoveObserver(this);
         }
     }
 }

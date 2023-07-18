@@ -15,6 +15,7 @@ public class EleController : ObserverSubjects
     public PlayerData playerDataSO;
     [SerializeField] private Vector2 playerMoveInput;
     [SerializeField] private bool isRight;
+    [HideInInspector] public bool isCaught;
 
     [Header("Ground Checker Component")]
     [SerializeField] private Transform groundChecker;
@@ -57,6 +58,11 @@ public class EleController : ObserverSubjects
 
     private void EleMove()
     {
+        if (!isCaught)
+        {
+            return;
+        }
+        
         float moveX;
         moveX = Input.GetAxisRaw("Horizontal");
         
