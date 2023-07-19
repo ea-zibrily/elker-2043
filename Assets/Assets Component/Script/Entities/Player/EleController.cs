@@ -58,14 +58,13 @@ public class EleController : ObserverSubjects
 
     private void EleMove()
     {
-        if (!isCaught)
+        if (isCaught)
         {
             return;
         }
         
         float moveX;
         moveX = Input.GetAxisRaw("Horizontal");
-        
         playerMoveInput = new Vector2(moveX, 0);
         playerMoveInput.Normalize();
         

@@ -1,6 +1,5 @@
-﻿public enum GameCondition
+﻿public enum GameConditionEnum
 {
-    GameOver,
     NextLevel,
     Restart,
     MainMenu,

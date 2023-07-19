@@ -16,6 +16,7 @@ public class SlideDoorController : MonoBehaviour
     [Header("Reference")]
     private SlideDoorEventHandler slideDoorEventHandler;
     private Animator myAnim;
+    [SerializeField] private BoxCollider2D physicsCollider;
 
     #endregion
     
@@ -29,37 +30,29 @@ public class SlideDoorController : MonoBehaviour
 
     private void OnEnable()
     {
-        slideDoorEventHandler.OnOpen += DeactivateDoor;
-        slideDoorEventHandler.OnClose += ActivateDoor;
+        slideDoorEventHandler.OnOpen += DeactivateCollider;
+        slideDoorEventHandler.OnClose += ActivateCollider;
     }
 
     private void OnDisable()
     {
-        slideDoorEventHandler.OnOpen -= DeactivateDoor;
-        slideDoorEventHandler.OnClose -= ActivateDoor;
+        slideDoorEventHandler.OnOpen -= DeactivateCollider;
+        slideDoorEventHandler.OnClose -= ActivateCollider;
     }
 
     #endregion
 
     #region Tsukuyomi Callbacks
 
-    private void ActivateDoor()
-    {
-        gameObject.GetComponentInChildren<BoxCollider2D>().enabled = true;
-    }
-    
-    private void DeactivateDoor()
-    {
-        gameObject.GetComponentInChildren<BoxCollider2D>().enabled = false;
-    }
-    
     private IEnumerator CloseDoor()
     {
         yield return new WaitForSeconds(closeTime);
         myAnim.SetBool("IsOpen", false);
     }
-
-
+    
+    private void DeactivateCollider() => physicsCollider.enabled = false;
+    private void ActivateCollider() => physicsCollider.enabled = true;
+    
     #endregion
 
     #region Collider Callbacks

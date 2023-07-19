@@ -5,9 +5,8 @@ using UnityEngine;
 public class TimeController : MonoBehaviour
 {
     #region Variable
-
-    [SerializeField] private float maxTime;
-    private float currentTime;
+    
+    [SerializeField] private float currentTime;
     [SerializeField] private bool isTimerStart;
     [SerializeField] private TextMeshProUGUI timerTextUI;
     
@@ -17,7 +16,6 @@ public class TimeController : MonoBehaviour
 
     private void Start()
     {
-        currentTime = 0f;
         isTimerStart = true;
     }
 
@@ -37,8 +35,7 @@ public class TimeController : MonoBehaviour
             return;
         }
         
-        isTimerStart = false;
-        if (currentTime <= maxTime)
+        if (currentTime > 1)
         {
             currentTime -= Time.deltaTime;
             SetTimerTextUI(currentTime);
@@ -46,7 +43,7 @@ public class TimeController : MonoBehaviour
         else
         {
             Debug.Log("Time's Up!");
-            GameEvent.TimerEndEvent();
+            // GameEvent.TimerEndEvent();
             isTimerStart = false;
             currentTime = 0f;
         }

@@ -6,12 +6,12 @@ using UnityEngine;
 public class EleNarratorSystem : MonoBehaviour, IObserver
 {
     public ObserverSubjects[] observerSubjects;
-    private GameEvent gameEvent;
-
-    private void Awake()
-    {
-        gameEvent = GameObject.Find("GameEvent").GetComponent<GameEvent>();
-    }
+    // private GameEvent gameEvent;
+    //
+    // private void Awake()
+    // {
+    //     gameEvent = GameObject.Find("GameEvent").GetComponent<GameEvent>();
+    // }
 
     private void OnEnable()
     {
@@ -47,7 +47,7 @@ public class EleNarratorSystem : MonoBehaviour, IObserver
                 
                 observerSubjects[0].gameObject.GetComponent<EleController>().isCaught = true;
                 observerSubjects[1].gameObject.GetComponent<EleDetector>().enemyDetected[0].isCaughted = true;
-                gameEvent.GameOverEvent();
+                // gameEvent.GameOverEvent();
                 break;
             default:
                 Debug.LogError("Action Enum not found");

@@ -1,4 +1,4 @@
-﻿public enum EnemyType
+﻿public enum EnemyTypeEnum
 {
     Ground,
     Land,

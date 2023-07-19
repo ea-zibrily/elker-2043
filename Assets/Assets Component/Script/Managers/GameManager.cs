@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 public class GameManager : MonoSingleton<GameManager>
 {
@@ -14,11 +15,11 @@ public class GameManager : MonoSingleton<GameManager>
 
     [Header("Game Over Component")]
     [SerializeField] private GameObject gameOverPanel;
-    
+    [SerializeField] private GameObject alertLampPanel;
+
     [Header("Timer Component")]
     [SerializeField] private TextMeshProUGUI timerTextUI;
-
-
+    
     #endregion
 
     #region MonoBehaviour Callbacks
@@ -46,14 +47,17 @@ public class GameManager : MonoSingleton<GameManager>
 
     #region Tsukuyomi Scene Controller Callbacks
     
-    public void SceneMoveController(GameCondition gameCondition)
+    public void SceneMoveController(GameConditionEnum gameConditionEnum)
     {
-        switch (gameCondition)
+        switch (gameConditionEnum)
         {
-            case GameCondition.GameOver:
-                // Some Logic
+            case GameConditionEnum.MainMenu:
+                OpenMenuScene();
                 break;
-            // Some Logic
+            case GameConditionEnum.Restart:
+                OpenGameScene();
+                break;
+            // Etc Scene w Some Logic
             default:
                 Debug.LogWarning("Game Conditionnya Gaada Kang");
                 break;
@@ -114,10 +118,10 @@ public class GameManager : MonoSingleton<GameManager>
     
     private IEnumerator GameOver()
     {
-        // Kedap Kedip Nyala Logic
-        yield return new WaitForSeconds(1f);
+        alertLampPanel.SetActive(true);
+        yield return new WaitForSeconds(2f);
         
-        // Kedap Kedip Mati Logic
+        alertLampPanel.SetActive(false);
         Time.timeScale = 0f;
         gameOverPanel.SetActive(true);
         Debug.Log("Game Over");

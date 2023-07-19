@@ -26,8 +26,12 @@ public class EnemyMoveAlong : EnemyBase
 
     private void RohoxMove()
     {
-        transform.Translate(Vector2.left * (enemyDataSO.EnemyMoveSpeed * Time.deltaTime));
+        if (isCaughted)
+        {
+            return;
+        }
         
+        transform.Translate(Vector2.left * (enemyDataSO.EnemyMoveSpeed * Time.deltaTime));
         if (IsWall())
         {
             EnemyFlip();
