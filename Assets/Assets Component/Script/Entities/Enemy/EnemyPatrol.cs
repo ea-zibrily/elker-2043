@@ -44,7 +44,7 @@ public class EnemyPatrol : EnemyBase
     private IEnumerator PatrolMove()
     {
         transform.position = Vector2.MoveTowards(transform.position, 
-            currentPoint.position, enemyDataSO.EnemyMoveSpeed * Time.deltaTime);
+            currentPoint.position, enemyDataSO.enemyMoveSpeed * Time.deltaTime);
 
         if (Vector2.Distance(transform.position, pointA.transform.position) <= 0.1f)
         {

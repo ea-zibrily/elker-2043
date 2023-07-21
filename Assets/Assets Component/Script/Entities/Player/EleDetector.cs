@@ -4,9 +4,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider2D))]
-public class EleDetector : ObserverSubjects
+public class EleDetector : MonoBehaviour
 {
    public List<EnemyBase> enemyDetected {get; set;}
+   private GameEventHandler gameEventHandler;
+
+   private void Awake()
+   {
+      gameEventHandler = GameObject.Find("GameEvent").GetComponent<GameEventHandler>();
+   }
 
    private void Start()
    {
@@ -23,8 +29,14 @@ public class EleDetector : ObserverSubjects
       if (other.CompareTag("Enemy"))
       {
          Debug.Log($"{other.gameObject.name} is detected");
-         enemyDetected.Add(other.gameObject.GetComponent<EnemyBase>());
-         NotifyObservers(ActionEnum.Caught);
+         GameEventHandler.CameraShakeEvent();
+         gameEventHandler.PlayerCatchEvent();
       }
+   }
+
+   public void StopEnemyDetected()
+   {
+      enemyDetected[0].StopEnemyMovement();
+      enemyDetected.Clear();
    }
 }

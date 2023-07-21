@@ -31,7 +31,7 @@ public class EnemyMoveAlong : EnemyBase
             return;
         }
         
-        transform.Translate(Vector2.left * (enemyDataSO.EnemyMoveSpeed * Time.deltaTime));
+        transform.Translate(Vector2.left * (enemyDataSO.enemyMoveSpeed * Time.deltaTime));
         if (IsWall())
         {
             EnemyFlip();

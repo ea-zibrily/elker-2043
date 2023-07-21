@@ -41,6 +41,11 @@ public class HackComputerController : EnvironmentBase
     private void Update()
     {
         HoldObject();
+        
+        if (isComplete)
+        {
+            // GameEventHandler.GameWinEvent();
+        }
     }
 
     #endregion

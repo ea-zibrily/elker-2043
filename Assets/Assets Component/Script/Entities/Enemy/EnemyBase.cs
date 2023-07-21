@@ -35,5 +35,11 @@ public class EnemyBase : MonoBehaviour
         transform.Rotate(0f, 180f, 0f);
     }
 
+    public void StopEnemyMovement()
+    {
+        isCaughted = true;
+        enemyDataSO.enemyMoveSpeed = 0f;
+    }
+
     #endregion
 }

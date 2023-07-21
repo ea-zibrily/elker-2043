@@ -30,6 +30,16 @@ public class ShakeCameraController : MonoBehaviour
         myVirtualCameraNoise = myVirtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
     }
 
+    private void OnEnable()
+    {
+        GameEventHandler.OnCameraShake += StartShake;
+    }
+
+    private void OnDisable()
+    {
+        GameEventHandler.OnCameraShake -= StartShake;
+    }
+
     private void Start()
     {
         StopShake();
@@ -45,7 +55,6 @@ public class ShakeCameraController : MonoBehaviour
         shakeTimeElapse += Time.deltaTime;
         if (shakeTimeElapse >= shakeDuration)
         {
-            Debug.Log("Stop Shake");
             StopShake();
         }
     }

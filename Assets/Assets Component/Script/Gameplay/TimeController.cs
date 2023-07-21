@@ -9,10 +9,16 @@ public class TimeController : MonoBehaviour
     [SerializeField] private float currentTime;
     [SerializeField] private bool isTimerStart;
     [SerializeField] private TextMeshProUGUI timerTextUI;
+    private GameEventHandler gameEventHandler;
     
     #endregion
 
     #region MonoBehaviour Callback
+
+    private void Awake()
+    {
+        gameEventHandler = GameObject.Find("GameEvent").GetComponent<GameEventHandler>();
+    }
 
     private void Start()
     {
@@ -35,15 +41,16 @@ public class TimeController : MonoBehaviour
             return;
         }
         
-        if (currentTime > 1)
+        if (currentTime > 1.0f)
         {
             currentTime -= Time.deltaTime;
             SetTimerTextUI(currentTime);
         }
         else
         {
-            Debug.Log("Time's Up!");
-            // GameEvent.TimerEndEvent();
+            GameEventHandler.CameraShakeEvent();
+            gameEventHandler.TimerEndEvent();
+            
             isTimerStart = false;
             currentTime = 0f;
         }

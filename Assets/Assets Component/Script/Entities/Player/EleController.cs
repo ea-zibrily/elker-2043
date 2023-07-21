@@ -9,7 +9,7 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 
 #endregion
-public class EleController : ObserverSubjects
+public class EleController : MonoBehaviour
 {
     [Header("Controller Component")]
     public PlayerData playerDataSO;
@@ -88,12 +88,10 @@ public class EleController : ObserverSubjects
         if (playerMoveInput.x != 0)
         {
             myAnim.SetBool("isMove", true);
-            NotifyObservers(ActionEnum.Walk);
         }
         else
         {
             myAnim.SetBool("isMove", false);
-            NotifyObservers(ActionEnum.Idle);
         }
     }
 
@@ -108,10 +106,16 @@ public class EleController : ObserverSubjects
         if (Input.GetKeyDown(KeyCode.Space) && IsGround())
         {
             myRb.AddForce(Vector2.up * playerDataSO.PlayerJumpForce, ForceMode2D.Impulse);
-            NotifyObservers(ActionEnum.Jump);
         }
     }
 
+    public void StopEleMovement()
+    {
+        isCaught = true;
+        myRb.velocity = Vector2.zero;
+        playerMoveInput.x = 0;
+    }
+    
     private bool IsGround()
     {
         return Physics2D.OverlapCircle(groundChecker.position, groundCheckerRadius, groundLayer);
@@ -122,6 +126,8 @@ public class EleController : ObserverSubjects
         Gizmos.color = Color.cyan;
         Gizmos.DrawWireSphere(groundChecker.position, groundCheckerRadius);
     }
+
+   
 
     #endregion
 }

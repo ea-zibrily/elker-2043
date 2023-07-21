@@ -5,20 +5,25 @@ using UnityEngine;
 
 public class GameEventHandler : MonoBehaviour
 {
-    // Player Catch
-    public delegate void PlayerCatch();
+    // Camera Shaker
+    public delegate void CameraShake();
+    public static event CameraShake OnCameraShake;
+    
+    // Game Over when Player Catch
+    public delegate IEnumerator PlayerCatch();
     public static event PlayerCatch OnPlayerCatch;
-    
-    // Timer
-    public delegate void TimerEnd();
-    public static event TimerEnd OnTimerEnd;
 
-    // Game Over
-    public delegate IEnumerator GameOver();
-    public static event GameOver OnGameOver;
+    // Game Over when Timer Done
+    public delegate IEnumerator TimerEnd();
+    public static event TimerEnd OnTimerEnd;
+    
+    // Game Win 
+    public delegate void GameWin();
+    public static event GameWin OnGameWin;
     
     
-    public static void PlayerCatchEvent() => OnPlayerCatch?.Invoke();
-    public static void TimerEndEvent() => OnTimerEnd?.Invoke();
-    public void GameOverEvent() => StartCoroutine(OnGameOver?.Invoke());
+    public static void CameraShakeEvent() => OnCameraShake?.Invoke();
+    public  void PlayerCatchEvent() => StartCoroutine(OnPlayerCatch?.Invoke());
+    public void TimerEndEvent() => StartCoroutine(OnTimerEnd?.Invoke());
+    public static void GameWinEvent() => OnGameWin?.Invoke();
 }

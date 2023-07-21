@@ -11,59 +11,71 @@ public class GameManager : MonoSingleton<GameManager>
     #region Variable
 
     [Header("Scene Component")]
-    [SerializeField] private RectTransform sceneFader;
+    private RectTransform sceneFader;
 
     [Header("Game Over Component")]
     [SerializeField] private GameObject gameOverPanel;
-    [SerializeField] private GameObject alertLampPanel;
+    private GameObject alertLampPanel;
 
-    [Header("Timer Component")]
-    [SerializeField] private TextMeshProUGUI timerTextUI;
+    // [Header("Timer Component")]
+    // // [SerializeField] private TextMeshProUGUI timerTextUI;
+    
+    [Header("Reference")]
+    private EleController eleController;
+    private EleDetector eleDetector;
+    private EnemyBase enemyBase;
     
     #endregion
 
     #region MonoBehaviour Callbacks
-    
+
+    protected override void Awake()
+    {
+        base.Awake();
+        eleController = GameObject.FindGameObjectWithTag("Player").GetComponent<EleController>();
+        eleDetector = GameObject.Find("Enemy Detector").GetComponent<EleDetector>();
+        
+    }
+
     private void OnEnable()
     {
         GameEventHandler.OnTimerEnd += TimerEnd;
         GameEventHandler.OnPlayerCatch += PlayerCatch;
-        GameEventHandler.OnGameOver += GameOver;
     }
 
     private void OnDisable()
     {
         GameEventHandler.OnTimerEnd -= TimerEnd;
         GameEventHandler.OnPlayerCatch -= PlayerCatch;
-        GameEventHandler.OnGameOver -= GameOver;
     }
     
     private void Start()
     {
-        StartFader();
+        // StartFader();
     }
 
     #endregion
 
     #region Tsukuyomi Scene Controller Callbacks
     
-    public void SceneMoveController(GameConditionEnum gameConditionEnum)
+    public void SceneMoveController(int gameCondition)
     {
-        switch (gameConditionEnum)
+        switch (gameCondition)
         {
-            case GameConditionEnum.MainMenu:
+            case 0:
                 OpenMenuScene();
                 break;
-            case GameConditionEnum.Restart:
+            case 1:
                 OpenGameScene();
                 break;
             // Etc Scene w Some Logic
+            
             default:
                 Debug.LogWarning("Game Conditionnya Gaada Kang");
                 break;
         }
     }
-
+    
     private void StartFader()
     {
         sceneFader.gameObject.SetActive (true);
@@ -74,7 +86,7 @@ public class GameManager : MonoSingleton<GameManager>
         });
     }
     
-    public void OpenMenuScene () 
+    private void OpenMenuScene () 
     {
         sceneFader.gameObject.SetActive (true);
         
@@ -112,19 +124,27 @@ public class GameManager : MonoSingleton<GameManager>
     #endregion
 
     #region Tsukuyomi Game Event Callbacks
-    
-    private void PlayerCatch() => Debug.Log("Game Over");
-    private void TimerEnd() => Debug.Log("End Game");
-    
-    private IEnumerator GameOver()
+
+    private IEnumerator TimerEnd()
     {
+        eleController.StopEleMovement();
+        yield return new WaitForSeconds(0.3f);
+        
+        Time.timeScale = 0f;
+        gameOverPanel.SetActive(true);
+    }
+    
+    private IEnumerator PlayerCatch()
+    {
+        eleController.StopEleMovement();
+        eleDetector.StopEnemyDetected();
+        
         alertLampPanel.SetActive(true);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(3.5f);
         
         alertLampPanel.SetActive(false);
         Time.timeScale = 0f;
         gameOverPanel.SetActive(true);
-        Debug.Log("Game Over");
     }
 
     #endregion
