@@ -26,16 +26,16 @@ public class GameManager : MonoSingleton<GameManager>
     
     private void OnEnable()
     {
-        GameEvent.OnTimerEnd += TimerEnd;
-        GameEvent.OnPlayerCatch += PlayerCatch;
-        GameEvent.OnGameOver += GameOver;
+        GameEventHandler.OnTimerEnd += TimerEnd;
+        GameEventHandler.OnPlayerCatch += PlayerCatch;
+        GameEventHandler.OnGameOver += GameOver;
     }
 
     private void OnDisable()
     {
-        GameEvent.OnTimerEnd -= TimerEnd;
-        GameEvent.OnPlayerCatch -= PlayerCatch;
-        GameEvent.OnGameOver -= GameOver;
+        GameEventHandler.OnTimerEnd -= TimerEnd;
+        GameEventHandler.OnPlayerCatch -= PlayerCatch;
+        GameEventHandler.OnGameOver -= GameOver;
     }
     
     private void Start()

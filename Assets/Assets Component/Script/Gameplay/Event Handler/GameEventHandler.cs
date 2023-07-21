@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameEvent : MonoBehaviour
+public class GameEventHandler : MonoBehaviour
 {
     // Player Catch
     public delegate void PlayerCatch();

@@ -19,6 +19,7 @@ public class EnvironmentBase : MonoBehaviour
     {
         IsPlayerInside = false;
         buttonAlertTextUI.text = buttonAlertText;
+        buttonAlertTextUI.gameObject.SetActive(false);
     }
 
     #endregion
@@ -38,7 +39,7 @@ public class EnvironmentBase : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            buttonAlertTextUI.gameObject.SetActive(true);
+            buttonAlertTextUI.gameObject.SetActive(false);
             IsPlayerInside = false;
         }
     }
