@@ -12,19 +12,17 @@ public class GameManager : MonoSingleton<GameManager>
 
     [Header("Scene Component")]
     private RectTransform sceneFader;
-
+    
     [Header("Game Over Component")]
-    [SerializeField] private GameObject gameOverPanel;
+    [SerializeField] private GameObject timePanel;
+    // [SerializeField] private GameObject catchPanel;
     private GameObject alertLampPanel;
 
-    // [Header("Timer Component")]
-    // // [SerializeField] private TextMeshProUGUI timerTextUI;
-    
     [Header("Reference")]
+    // [SerializeField] private EnemyBase[] enemyBase;
     private EleController eleController;
     private EleDetector eleDetector;
-    private EnemyBase enemyBase;
-    
+
     #endregion
 
     #region MonoBehaviour Callbacks
@@ -32,21 +30,23 @@ public class GameManager : MonoSingleton<GameManager>
     protected override void Awake()
     {
         base.Awake();
+        
         eleController = GameObject.FindGameObjectWithTag("Player").GetComponent<EleController>();
         eleDetector = GameObject.Find("Enemy Detector").GetComponent<EleDetector>();
-        
     }
 
     private void OnEnable()
     {
         GameEventHandler.OnTimerEnd += TimerEnd;
         GameEventHandler.OnPlayerCatch += PlayerCatch;
+        GameEventHandler.OnGameWin += PlayerWin;
     }
 
     private void OnDisable()
     {
         GameEventHandler.OnTimerEnd -= TimerEnd;
         GameEventHandler.OnPlayerCatch -= PlayerCatch;
+        GameEventHandler.OnGameWin -= PlayerWin;
     }
     
     private void Start()
@@ -92,7 +92,7 @@ public class GameManager : MonoSingleton<GameManager>
         
         LeanTween.alpha (sceneFader, 0, 0);
         LeanTween.alpha (sceneFader, 1, 1f).setOnComplete (() => {
-            SceneManager.LoadScene (0);
+            SceneManager.LoadScene (1);
         });
     }
     
@@ -110,7 +110,6 @@ public class GameManager : MonoSingleton<GameManager>
     {
         sceneFader.gameObject.SetActive (true);
         
-        // ALPHA
         LeanTween.alpha (sceneFader, 0, 0);
         LeanTween.alpha (sceneFader, 1, 1f).setOnComplete (() => {
             // Example for little pause before laoding the next scene
@@ -131,7 +130,7 @@ public class GameManager : MonoSingleton<GameManager>
         yield return new WaitForSeconds(0.3f);
         
         Time.timeScale = 0f;
-        gameOverPanel.SetActive(true);
+        timePanel.SetActive(true);
     }
     
     private IEnumerator PlayerCatch()
@@ -144,10 +143,12 @@ public class GameManager : MonoSingleton<GameManager>
         
         alertLampPanel.SetActive(false);
         Time.timeScale = 0f;
-        gameOverPanel.SetActive(true);
+        // catchPanel.SetActive(true);
     }
 
+    private void PlayerWin() => Debug.Log("Win lur");
+
     #endregion
-    
-    
+
+
 }

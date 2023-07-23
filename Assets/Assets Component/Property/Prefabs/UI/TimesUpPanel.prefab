@@ -929,7 +929,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3901811443196741135}
   m_Layer: 5
-  m_Name: GameOverPanel
+  m_Name: TimesUpPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

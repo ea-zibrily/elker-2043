@@ -71,7 +71,7 @@ Transform:
   - {fileID: 1658873517999002730}
   - {fileID: 6377586690782365469}
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1814486502233714544
 BoxCollider2D:
@@ -254,8 +254,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.33595002, y: 0.32575, z: 0}
-    m_Extent: {x: 2.22255, y: 1.54135, z: 0}
+    m_Center: {x: -0.34579998, y: 0.3276, z: 0}
+    m_Extent: {x: 2.2216, y: 1.551, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0

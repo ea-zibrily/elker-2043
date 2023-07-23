@@ -44,7 +44,7 @@ public class HackComputerController : EnvironmentBase
         
         if (isComplete)
         {
-            // GameEventHandler.GameWinEvent();
+            GameEventHandler.GameWinEvent();
         }
     }
 
