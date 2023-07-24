@@ -12,6 +12,7 @@ public class EnemyBase : MonoBehaviour
     public EnemyData enemyDataSO;
     public bool isRight;
     [HideInInspector] public bool isCaughted;
+    [HideInInspector] public Animator myAnim;
 
     #endregion
 
@@ -27,8 +28,29 @@ public class EnemyBase : MonoBehaviour
 
     #endregion
 
+    #region MonoBehaviour Callbacks
+
+    private void Awake()
+    {
+        myAnim = GetComponentInChildren<Animator>();
+    }
+
+    #endregion
+    
     #region Tsukuyomi Callbacks
 
+    public void EnemyAnimation()
+    {
+        if (enemyDataSO.enemyMoveSpeed != 0)
+        {
+            myAnim.SetBool("IsMove", true);
+        }
+        else
+        {
+            myAnim.SetBool("IsMove", false);
+        }
+    }
+    
     public void EnemyFlip()
     {
         isRight = !isRight;

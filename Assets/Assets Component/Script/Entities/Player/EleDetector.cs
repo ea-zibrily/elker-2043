@@ -1,13 +1,20 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider2D))]
 public class EleDetector : MonoBehaviour
 {
-   public List<EnemyBase> enemyDetected {get; set;}
+   #region Variable
+
+   public List<EnemyBase> enemyDetected;
    private GameEventHandler gameEventHandler;
+
+   #endregion
+
+   #region MonoBehaviour Callbacks
 
    private void Awake()
    {
@@ -24,19 +31,52 @@ public class EleDetector : MonoBehaviour
       }
    }
 
-   private void OnTriggerEnter2D(Collider2D other)
+   #endregion
+
+   #region Tsukuyomi Callbacks
+
+   private void HandleEnemyComponent(GameObject enemyObject)
    {
-      if (other.CompareTag("Enemy"))
+      Debug.Log($"{enemyObject.name} is detected");
+      
+      var enemyObj = enemyObject.GetComponent<EnemyBase>();
+      if (enemyObj != null)
       {
-         Debug.Log($"{other.gameObject.name} is detected");
-         GameEventHandler.CameraShakeEvent();
-         gameEventHandler.PlayerCatchEvent();
+         enemyDetected.Add(enemyObj);
       }
+      
+      GameEventHandler.CameraShakeEvent();
+      enemyDetected[0].StopEnemyMovement();
+      // gameEventHandler.PlayerCatchEvent();
    }
 
-   public void StopEnemyDetected()
+   public void StopEnemyDetectedMovement()
    {
       enemyDetected[0].StopEnemyMovement();
       enemyDetected.Clear();
    }
+
+   #endregion
+
+
+   #region Collider2D Callbacks
+
+   private void OnTriggerEnter2D(Collider2D other)
+   {
+      if (other.CompareTag("EnemyBody"))
+      {
+         HandleEnemyComponent(other.gameObject);
+      }
+      else if (other.CompareTag("EnemyLighting"))
+      {
+         var enemyLighting = other.gameObject.GetComponentInParent<EnemyBase>();
+         if (enemyLighting != null)
+         {
+            HandleEnemyComponent(enemyLighting.gameObject);
+         }
+      }
+   }
+
+   #endregion
+
 }

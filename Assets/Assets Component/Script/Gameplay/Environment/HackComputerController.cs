@@ -77,8 +77,8 @@ public class HackComputerController : EnvironmentBase
     private IEnumerator IncreaseBar()
     {
         buttonAlertTextUI.gameObject.SetActive(false);
-        holdPanelAnim.SetBool("isHolding", true);
-        yield return new WaitForSeconds(0.20f);
+        holdPanelAnim.SetBool("IsHolding", true);
+        yield return new WaitForSeconds(0.23f);
         
         if (fillBarUI.fillAmount < maxFillBar)
         {
@@ -86,16 +86,16 @@ public class HackComputerController : EnvironmentBase
         }
         else
         {
-            isComplete = true;
             fillBarUI.fillAmount = maxFillBar;
-            holdPanelAnim.SetBool("isHolding", false);
+            holdPanelAnim.SetBool("IsHolding", false);
+            isComplete = true;
         }
     }
 
     private IEnumerator ResetBar()
     {
         isComplete = false;
-        holdPanelAnim.SetBool("isHolding", false);
+        holdPanelAnim.SetBool("IsHolding", false);
         yield return new WaitForSeconds(0.25f);
         
         fillBarUI.fillAmount = minFillBar;

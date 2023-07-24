@@ -20,6 +20,11 @@ public class EnemyMoveAlong : EnemyBase
         RohoxMove();
     }
 
+    private void Update()
+    {
+        EnemyAnimation();
+    }
+
     #endregion
     
     #region Tsukuyomi Callbacks

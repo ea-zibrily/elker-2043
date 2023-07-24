@@ -136,8 +136,7 @@ public class GameManager : MonoSingleton<GameManager>
     private IEnumerator PlayerCatch()
     {
         eleController.StopEleMovement();
-        eleDetector.StopEnemyDetected();
-        
+
         alertLampPanel.SetActive(true);
         yield return new WaitForSeconds(3.5f);
         

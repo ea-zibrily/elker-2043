@@ -9,8 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2961409200735896905}
+  - component: {fileID: 4289840109255365490}
   m_Layer: 5
-  m_Name: HoldPanel
+  m_Name: HackPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26,7 +27,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1720049275105667876}
   - {fileID: 132732029558790066}
@@ -38,6 +39,27 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!95 &4289840109255365490
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1740862244099707654}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 742a6f7d599170b4e87be8452bfd2b08, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3411243139293185303
 GameObject:
   m_ObjectHideFlags: 0
@@ -71,7 +93,7 @@ Transform:
   - {fileID: 1658873517999002730}
   - {fileID: 6377586690782365469}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1814486502233714544
 BoxCollider2D:
@@ -130,10 +152,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f150e588a664584788df48882c43b68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonAlertText: Press C to Interact
+  buttonAlertText: Hold C to Hack
   buttonAlertTextUI: {fileID: 8988864792303740651}
   fillBarUI: {fileID: 7810027657422903642}
-  fillBarSpeed: 0.5
+  fillBarSpeed: 0.3
   isComplete: 0
 --- !u!1 &3765013205933669494
 GameObject:
@@ -254,8 +276,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.34579998, y: 0.3276, z: 0}
-    m_Extent: {x: 2.2216, y: 1.551, z: 0}
+    m_Center: {x: -0.33859998, y: 0.32439995, z: 0}
+    m_Extent: {x: 2.2288, y: 1.5417, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -284,7 +306,7 @@ GameObject:
   - component: {fileID: 5936213076847583833}
   - component: {fileID: 7810027657422903642}
   m_Layer: 5
-  m_Name: Hold_Fill
+  m_Name: Hack_Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -445,7 +467,7 @@ GameObject:
   - component: {fileID: 7622986744596107204}
   - component: {fileID: 802623396081350344}
   m_Layer: 5
-  m_Name: Hold_Effect
+  m_Name: Hack_Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -681,15 +703,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: Some Pop Up Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 7b3bb7a74a5585240bcc8a86c922b85c, type: 2}
-  m_sharedMaterial: {fileID: -8920524941285362900, guid: 7b3bb7a74a5585240bcc8a86c922b85c, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a0af982bb8b721b4e862b0c5ed317553, type: 2}
+  m_sharedMaterial: {fileID: -1112687047392411927, guid: a0af982bb8b721b4e862b0c5ed317553, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -712,7 +734,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535

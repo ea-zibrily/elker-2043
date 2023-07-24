@@ -141,7 +141,7 @@ MonoBehaviour:
   - {x: -0.56062794, y: -0.29432583, z: 0}
   m_ShapePathHash: 1426342917
   m_Mesh: {fileID: 0}
-  m_InstanceId: -13390
+  m_InstanceId: -1360
   m_LocalBounds:
     m_Center: {x: -0.2539239, y: 0.11205089, z: 0}
     m_Extent: {x: 0.7165332, y: 0.7978419, z: 0}
@@ -159,7 +159,7 @@ GameObject:
   - component: {fileID: 8306999879761674309}
   m_Layer: 0
   m_Name: Lighting
-  m_TagString: Enemy
+  m_TagString: EnemyLighting
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -254,8 +254,8 @@ PolygonCollider2D:
       - {x: -0.006942272, y: -0.3539381}
       - {x: -0.045401156, y: -0.32697937}
       - {x: -0.03642553, y: -0.3485192}
-      - {x: 2.148252, y: -4.3809705}
-      - {x: 4.6270847, y: -4.380107}
+      - {x: 2.17941, y: -5.0369654}
+      - {x: 4.5535884, y: -5.0349193}
   m_UseDelaunayMesh: 0
 --- !u!114 &8306999879761674309
 MonoBehaviour:
@@ -291,8 +291,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 2.26225, y: -2.38675, z: 0}
-    m_Extent: {x: 2.79035, y: 2.5866501, z: 0}
+    m_Center: {x: 2.2668, y: -2.67205, z: 0}
+    m_Extent: {x: 2.7975001, y: 2.8636498, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -303,8 +303,8 @@ MonoBehaviour:
   m_ShapeLightFalloffSize: 0.5
   m_ShapeLightFalloffOffset: {x: 0, y: 0}
   m_ShapePath:
-  - {x: 2.18, y: -4.463512, z: 0}
-  - {x: 4.56, y: -4.4635124, z: 0}
+  - {x: 2.18, y: -5.04, z: 0}
+  - {x: 4.56, y: -5.04, z: 0}
   - {x: -0.031665564, y: -0.3027048, z: 0}
 --- !u!1 &6028410301989365250
 GameObject:
@@ -320,7 +320,7 @@ GameObject:
   - component: {fileID: 7946985360176031558}
   m_Layer: 0
   m_Name: Ceetez
-  m_TagString: Enemy
+  m_TagString: EnemyBody
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -398,7 +398,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.057702303, y: -0.26228404}

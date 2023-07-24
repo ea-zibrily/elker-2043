@@ -14,12 +14,6 @@ public class EnemyPatrol : EnemyBase
 
     #region MonoBehaviour Callbacks
 
-    private void Awake()
-    {
-        pointA = GameObject.Find("Point A").transform;
-        pointB = GameObject.Find("Point B").transform;
-    }
-
     private void Start()
     {
         gameObject.name = enemyDataSO.enemyName;
@@ -35,6 +29,11 @@ public class EnemyPatrol : EnemyBase
         }
 
         StartCoroutine(PatrolMove());
+    }
+
+    private void Update()
+    {
+        EnemyAnimation();
     }
 
     #endregion
@@ -66,6 +65,6 @@ public class EnemyPatrol : EnemyBase
             isPointArea = false;
         }
     }
-    
+
     #endregion
 }

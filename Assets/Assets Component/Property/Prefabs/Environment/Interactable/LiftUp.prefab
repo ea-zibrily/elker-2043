@@ -66,8 +66,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.08410001, y: 2.90185, z: 0}
-    m_Extent: {x: 0.1636, y: 0.112149954, z: 0}
+    m_Center: {x: 0.0809, y: 2.90465, z: 0}
+    m_Extent: {x: 0.1739, y: 0.11535001, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -370,8 +370,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.05944997, y: -0.4527501, z: 0}
-    m_Extent: {x: 1.8485501, y: 2.8280501, z: 0}
+    m_Center: {x: -0.059350014, y: -0.45525002, z: 0}
+    m_Extent: {x: 1.85015, y: 2.83315, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -454,8 +454,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Some Pop Up Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 7b3bb7a74a5585240bcc8a86c922b85c, type: 2}
-  m_sharedMaterial: {fileID: -8920524941285362900, guid: 7b3bb7a74a5585240bcc8a86c922b85c, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a0af982bb8b721b4e862b0c5ed317553, type: 2}
+  m_sharedMaterial: {fileID: -1112687047392411927, guid: a0af982bb8b721b4e862b0c5ed317553, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -485,7 +485,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535

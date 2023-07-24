@@ -74,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1783866235
   m_SortingLayer: 2
-  m_SortingOrder: 2
+  m_SortingOrder: 6
   m_Sprite: {fileID: 21300000, guid: 0f396c30bd14b224b907d71ed5a9a6a6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -138,7 +138,7 @@ MonoBehaviour:
   - {x: -0.44157887, y: -1.4907107, z: 0}
   m_ShapePathHash: -1205505969
   m_Mesh: {fileID: 0}
-  m_InstanceId: -5226
+  m_InstanceId: -1494
   m_LocalBounds:
     m_Center: {x: -0.05738306, y: -0.3477292, z: 0}
     m_Extent: {x: 0.6302924, y: 1.1847138, z: 0}
@@ -187,7 +187,7 @@ GameObject:
   - component: {fileID: 1482147865950518807}
   m_Layer: 0
   m_Name: Rohox
-  m_TagString: Enemy
+  m_TagString: EnemyBody
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -369,8 +369,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.16455002, y: 0.7503, z: 0}
-    m_Extent: {x: 0.50875, y: 0.50729996, z: 0}
+    m_Center: {x: 0.16575001, y: 0.7449, z: 0}
+    m_Extent: {x: 0.50315, y: 0.50909996, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0.37
