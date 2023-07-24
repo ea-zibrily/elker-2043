@@ -11,17 +11,16 @@ public class GameManager : MonoSingleton<GameManager>
     #region Variable
 
     [Header("Scene Component")]
-    private RectTransform sceneFader;
+    [SerializeField] private RectTransform sceneFader;
     
     [Header("Game Over Component")]
     [SerializeField] private GameObject timePanel;
     // [SerializeField] private GameObject catchPanel;
-    private GameObject alertLampPanel;
+    [SerializeField] private GameObject alertLampPanel;
 
     [Header("Reference")]
     // [SerializeField] private EnemyBase[] enemyBase;
     private EleController eleController;
-    private EleDetector eleDetector;
 
     #endregion
 
@@ -32,7 +31,6 @@ public class GameManager : MonoSingleton<GameManager>
         base.Awake();
         
         eleController = GameObject.FindGameObjectWithTag("Player").GetComponent<EleController>();
-        eleDetector = GameObject.Find("Enemy Detector").GetComponent<EleDetector>();
     }
 
     private void OnEnable()
@@ -50,8 +48,8 @@ public class GameManager : MonoSingleton<GameManager>
     }
     
     private void Start()
-    {
-        // StartFader();
+    { 
+        StartFader();
     }
 
     #endregion
@@ -136,7 +134,6 @@ public class GameManager : MonoSingleton<GameManager>
     private IEnumerator PlayerCatch()
     {
         eleController.StopEleMovement();
-
         alertLampPanel.SetActive(true);
         yield return new WaitForSeconds(3.5f);
         
