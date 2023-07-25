@@ -22,6 +22,7 @@ public class GameEventHandler : MonoBehaviour
     public static event GameWin OnGameWin;
     
     
+    
     public static void CameraShakeEvent() => OnCameraShake?.Invoke();
     public  void PlayerCatchEvent() => StartCoroutine(OnPlayerCatch?.Invoke());
     public void TimerEndEvent() => StartCoroutine(OnTimerEnd?.Invoke());

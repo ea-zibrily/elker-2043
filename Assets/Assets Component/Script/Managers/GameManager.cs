@@ -36,6 +36,7 @@ public class GameManager : MonoSingleton<GameManager>
     private void OnEnable()
     {
         GameEventHandler.OnTimerEnd += TimerEnd;
+        GameOverButtonEventHandler.OnGameOverButtonActive += StopGameActivities;
         GameEventHandler.OnPlayerCatch += PlayerCatch;
         GameEventHandler.OnGameWin += PlayerWin;
     }
@@ -43,6 +44,7 @@ public class GameManager : MonoSingleton<GameManager>
     private void OnDisable()
     {
         GameEventHandler.OnTimerEnd -= TimerEnd;
+        GameOverButtonEventHandler.OnGameOverButtonActive -= StopGameActivities;
         GameEventHandler.OnPlayerCatch -= PlayerCatch;
         GameEventHandler.OnGameWin -= PlayerWin;
     }
@@ -127,9 +129,10 @@ public class GameManager : MonoSingleton<GameManager>
         eleController.StopEleMovement();
         yield return new WaitForSeconds(0.3f);
         
-        Time.timeScale = 0f;
         timePanel.SetActive(true);
     }
+    
+    private void StopGameActivities() => Time.timeScale = 0f;
     
     private IEnumerator PlayerCatch()
     {
@@ -138,11 +141,10 @@ public class GameManager : MonoSingleton<GameManager>
         yield return new WaitForSeconds(3.5f);
         
         alertLampPanel.SetActive(false);
-        Time.timeScale = 0f;
         // catchPanel.SetActive(true);
     }
 
-    private void PlayerWin() => Debug.Log("Win lur");
+    public void PlayerWin() => Debug.Log("Win lur");
 
     #endregion
 

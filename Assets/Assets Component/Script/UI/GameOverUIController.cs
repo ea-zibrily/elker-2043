@@ -16,9 +16,9 @@ public class GameOverUIController : MonoBehaviour
     
     private bool isGameOverTextDone;
     private bool isAddingRichTextTag;
-    
+
     [Space]
-    [SerializeField] private GameObject[] buttonObject;
+    [SerializeField] private GameObject buttonObject;
     
     #endregion
 
@@ -26,20 +26,15 @@ public class GameOverUIController : MonoBehaviour
 
     private void Start()
     {
-        DeactivateButton();
-        
         gameOverText = gameOverTextUI.text;
         isGameOverTextDone = false;
-        gameOverTextUI.text = "";
+
+        StartCoroutine(DisplayLine());
     }
 
     private void Update()
     {
-        if (!isGameOverTextDone)
-        {
-            StartCoroutine(DisplayLine());
-        }
-        else
+        if (isGameOverTextDone)
         {
             StartCoroutine(ActivateButton());
         }
@@ -51,9 +46,11 @@ public class GameOverUIController : MonoBehaviour
 
     private IEnumerator DisplayLine()
     {
-        isAddingRichTextTag = false;
-
         var gameOverTextLetters = gameOverText.ToCharArray();
+        isAddingRichTextTag = false;
+        gameOverTextUI.text = "";
+
+        yield return new WaitForSeconds(0.2f);
         foreach (var letter in gameOverTextLetters)
         {
             if (letter == '<' || isAddingRichTextTag)
@@ -79,22 +76,10 @@ public class GameOverUIController : MonoBehaviour
 
     private IEnumerator ActivateButton()
     {
-        for (int i = 0; i < buttonObject.Length; i++)
-        {
-            buttonObject[i].SetActive(true);
-            yield return new WaitForSeconds(displayButtonSpeed);
-        }
+        yield return new WaitForSeconds(displayButtonSpeed);
+        buttonObject.SetActive(true);
     }
-    
-    private void DeactivateButton()
-    {
-        for (int i = 0; i < buttonObject.Length; i++)
-        {
-            buttonObject[i].SetActive(false);
-        }
-    }
-    
-    
+
     #endregion
     
 }
