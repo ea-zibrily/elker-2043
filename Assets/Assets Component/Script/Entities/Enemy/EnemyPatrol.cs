@@ -46,7 +46,8 @@ public class EnemyPatrol : EnemyBase
     {
         transform.position = Vector2.MoveTowards(transform.position, 
             currentPoint.position, tempMoveSpeed * Time.deltaTime);
-
+        FindObjectOfType<AudioManager>().Play(SoundEnum.SFX_Ceetez);
+        
         if (Vector2.Distance(transform.position, pointA.transform.position) <= 0.1f)
         {
             currentPoint = pointB;

@@ -46,7 +46,7 @@ public class EleDetector : MonoBehaviour
       }
       
       GameEventHandler.CameraShakeEvent();
-      enemyDetected[0].StopEnemyMovement();
+      StopEnemyDetectedMovement();
       gameEventHandler.PlayerCatchEvent();
    }
 

@@ -69,6 +69,7 @@ public class EleController : MonoBehaviour
         playerMoveInput.Normalize();
         
         myRb.velocity = new Vector2(playerMoveInput.x * playerDataSO.PlayerSpeed, myRb.velocity.y);
+        FindObjectOfType<AudioManager>().Play(SoundEnum.SFX_Ele);
     }
 
     private void EleDirection()

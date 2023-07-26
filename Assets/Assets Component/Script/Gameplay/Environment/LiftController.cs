@@ -73,8 +73,12 @@ public class LiftController : EnvironmentBase
             myAnim.SetBool("IsActive", false);
         }
     }
-    
-    private void LiftTeleport() => eleTransform.position = liftPoint.position;
+
+    private void LiftTeleport()
+    {
+        eleTransform.position = liftPoint.position;
+        FindObjectOfType<AudioManager>().Play(SoundEnum.SFX_Lift);
+    }
     private void SetLiftOpen() => isLiftOpen = true;
     private void SetLiftClose() => isLiftOpen = false;
 

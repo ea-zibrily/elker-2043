@@ -19,20 +19,12 @@ public class GameManager : MonoSingleton<GameManager>
     [SerializeField] private GameObject alertLampPanel;
 
     [Header("Reference")]
-    // [SerializeField] private EnemyBase[] enemyBase;
     private EleController eleController;
 
     #endregion
 
     #region MonoBehaviour Callbacks
-
-    protected override void Awake()
-    {
-        base.Awake();
-        
-        eleController = GameObject.FindGameObjectWithTag("Player").GetComponent<EleController>();
-    }
-
+    
     private void OnEnable()
     {
         GameEventHandler.OnTimerEnd += TimerEnd;
@@ -67,13 +59,14 @@ public class GameManager : MonoSingleton<GameManager>
         switch (gameCondition)
         {
             case 0:
-                OpenMenuScene();
-                break;
-            case 1:
                 OpenGameScene();
                 break;
-            // Etc Scene w Some Logic
-            
+            case 1:
+                OpenMenuScene();
+                break;
+            case 2:
+                OpenNextLevelScene();
+                break;
             default:
                 Debug.LogWarning("Game Conditionnya Gaada Kang");
                 break;
@@ -142,8 +135,10 @@ public class GameManager : MonoSingleton<GameManager>
     {
         eleController.StopEleMovement();
         alertLampPanel.SetActive(true);
+        FindObjectOfType<AudioManager>().Play(SoundEnum.SFX_Alarm);
         yield return new WaitForSeconds(3.5f);
         
+        FindObjectOfType<AudioManager>().Stop(SoundEnum.SFX_Alarm);
         alertLampPanel.SetActive(false);
         catchPanel.SetActive(true);
     }
