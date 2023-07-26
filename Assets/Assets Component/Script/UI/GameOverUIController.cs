@@ -8,7 +8,7 @@ public class GameOverUIController : MonoBehaviour
 {
     #region Variable
     
-    [Header("Text Component")] 
+    [Header("Headline Component")] 
     [SerializeField] private float displayTextSpeed;
     [SerializeField] private float displayButtonSpeed;
     private string gameOverText;
@@ -19,7 +19,7 @@ public class GameOverUIController : MonoBehaviour
 
     [Space]
     [SerializeField] private GameObject buttonObject;
-    
+
     #endregion
 
     #region MonoBehaviour Callbacks
@@ -28,8 +28,10 @@ public class GameOverUIController : MonoBehaviour
     {
         gameOverText = gameOverTextUI.text;
         isGameOverTextDone = false;
+        buttonObject.SetActive(false);
 
         StartCoroutine(DisplayLine());
+       
     }
 
     private void Update()
@@ -38,6 +40,7 @@ public class GameOverUIController : MonoBehaviour
         {
             StartCoroutine(ActivateButton());
         }
+        
     }
     
     #endregion

@@ -509,7 +509,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Restart
+  m_text: <color=#00fed6>Restart</color>
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 37aab67b16e7c464990af844baec6fdc, type: 2}
   m_sharedMaterial: {fileID: -5940432686219516914, guid: 37aab67b16e7c464990af844baec6fdc, type: 2}
@@ -814,7 +814,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2409649601926086553}
   m_Father: {fileID: 1913840887075909109}
@@ -917,7 +917,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6420248753679352286}
   m_Father: {fileID: 1913840887075909109}
@@ -1008,7 +1008,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3901811443196741135
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1046,7 +1046,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayTextSpeed: 0.1
-  displayButtonSpeed: 1.4
+  displayButtonSpeed: 1
   gameOverTextUI: {fileID: 1571627740899497348}
   buttonObject: {fileID: 4137738327746269505}
 --- !u!1 &6545414736129215431
