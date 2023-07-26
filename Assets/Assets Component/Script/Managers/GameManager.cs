@@ -15,7 +15,7 @@ public class GameManager : MonoSingleton<GameManager>
     
     [Header("Game Over Component")]
     [SerializeField] private GameObject timePanel;
-    // [SerializeField] private GameObject catchPanel;
+    [SerializeField] private GameObject catchPanel;
     [SerializeField] private GameObject alertLampPanel;
 
     [Header("Reference")]
@@ -50,12 +50,16 @@ public class GameManager : MonoSingleton<GameManager>
     }
     
     private void Start()
-    { 
+    {
         StartFader();
+        
+        timePanel.SetActive(false);
+        catchPanel.SetActive(false);
+        alertLampPanel.SetActive(false);
     }
-
+    
     #endregion
-
+    
     #region Tsukuyomi Scene Controller Callbacks
     
     public void SceneMoveController(int gameCondition)
@@ -141,7 +145,7 @@ public class GameManager : MonoSingleton<GameManager>
         yield return new WaitForSeconds(3.5f);
         
         alertLampPanel.SetActive(false);
-        // catchPanel.SetActive(true);
+        catchPanel.SetActive(true);
     }
 
     public void PlayerWin() => Debug.Log("Win lur");

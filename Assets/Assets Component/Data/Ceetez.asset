@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Ceetez
   m_EditorClassIdentifier: 
   enemyName: Ceetez
-  enemyMoveSpeed: 4
+  <EnemyMoveSpeed>k__BackingField: 4
   enemyTypeEnum: 0

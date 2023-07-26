@@ -10,11 +10,12 @@ public class EnemyMoveAlong : EnemyBase
 
     #region MonoBehaviour Callbacks
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         gameObject.name = enemyDataSO.enemyName;
     }
-    
+
     private void FixedUpdate()
     {
         RohoxMove();
@@ -36,7 +37,7 @@ public class EnemyMoveAlong : EnemyBase
             return;
         }
         
-        transform.Translate(Vector2.left * (enemyDataSO.enemyMoveSpeed * Time.deltaTime));
+        transform.Translate(Vector2.left * (tempMoveSpeed * Time.deltaTime));
         if (IsWall())
         {
             EnemyFlip();

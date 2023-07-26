@@ -11,6 +11,7 @@ public class EnemyBase : MonoBehaviour
     [Header("Enemy Component")]
     public EnemyData enemyDataSO;
     public bool isRight;
+    [HideInInspector] public float tempMoveSpeed;
     [HideInInspector] public bool isCaughted;
     [HideInInspector] public Animator myAnim;
 
@@ -35,13 +36,18 @@ public class EnemyBase : MonoBehaviour
         myAnim = GetComponentInChildren<Animator>();
     }
 
+    protected virtual void Start()
+    {
+        tempMoveSpeed = enemyDataSO.EnemyMoveSpeed;
+    }
+
     #endregion
     
     #region Tsukuyomi Callbacks
-
+    
     public void EnemyAnimation()
     {
-        if (enemyDataSO.enemyMoveSpeed != 0)
+        if (tempMoveSpeed != 0)
         {
             myAnim.SetBool("IsMove", true);
         }
@@ -60,7 +66,7 @@ public class EnemyBase : MonoBehaviour
     public void StopEnemyMovement()
     {
         isCaughted = true;
-        enemyDataSO.enemyMoveSpeed = 0f;
+        tempMoveSpeed = 0f;
     }
 
     #endregion

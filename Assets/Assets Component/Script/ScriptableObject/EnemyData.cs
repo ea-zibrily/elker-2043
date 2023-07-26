@@ -5,6 +5,6 @@ using UnityEngine.Serialization;
 public class EnemyData : ScriptableObject
 {
     public string enemyName;
-    public float enemyMoveSpeed;
+    [field: SerializeField] public float EnemyMoveSpeed { get; private set; }
     public EnemyTypeEnum enemyTypeEnum;
 }

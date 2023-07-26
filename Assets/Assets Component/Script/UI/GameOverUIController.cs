@@ -8,7 +8,7 @@ public class GameOverUIController : MonoBehaviour
 {
     #region Variable
     
-    [Header("Headline Component")] 
+    [Header("Main Component")] 
     [SerializeField] private float displayTextSpeed;
     [SerializeField] private float displayButtonSpeed;
     private string gameOverText;
@@ -40,7 +40,6 @@ public class GameOverUIController : MonoBehaviour
         {
             StartCoroutine(ActivateButton());
         }
-        
     }
     
     #endregion
@@ -53,7 +52,7 @@ public class GameOverUIController : MonoBehaviour
         isAddingRichTextTag = false;
         gameOverTextUI.text = "";
 
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.5f);
         foreach (var letter in gameOverTextLetters)
         {
             if (letter == '<' || isAddingRichTextTag)

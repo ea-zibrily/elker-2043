@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5566601590227451614}
   - component: {fileID: 7543475174827575585}
   m_Layer: 5
-  m_Name: AlertPanel
+  m_Name: AlarmPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

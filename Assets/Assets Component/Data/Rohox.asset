@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Rohox
   m_EditorClassIdentifier: 
   enemyName: Rohox
-  enemyMoveSpeed: 5
+  <EnemyMoveSpeed>k__BackingField: 5
   enemyTypeEnum: 0

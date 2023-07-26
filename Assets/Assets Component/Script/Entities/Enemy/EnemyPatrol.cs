@@ -14,8 +14,10 @@ public class EnemyPatrol : EnemyBase
 
     #region MonoBehaviour Callbacks
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
+        
         gameObject.name = enemyDataSO.enemyName;
         currentPoint = pointA;
         isPointArea = false;
@@ -43,7 +45,7 @@ public class EnemyPatrol : EnemyBase
     private IEnumerator PatrolMove()
     {
         transform.position = Vector2.MoveTowards(transform.position, 
-            currentPoint.position, enemyDataSO.enemyMoveSpeed * Time.deltaTime);
+            currentPoint.position, tempMoveSpeed * Time.deltaTime);
 
         if (Vector2.Distance(transform.position, pointA.transform.position) <= 0.1f)
         {
