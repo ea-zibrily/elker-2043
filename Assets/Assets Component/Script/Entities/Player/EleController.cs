@@ -110,6 +110,8 @@ public class EleController : MonoBehaviour
         }
     }
 
+    public void ResumeEleMovement() => isCaught = false;
+
     public void StopEleMovement()
     {
         isCaught = true;
