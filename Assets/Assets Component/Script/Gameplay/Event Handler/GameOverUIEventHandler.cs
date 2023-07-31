@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class GameOverButtonEventHandler : MonoBehaviour
+public class GameOverUIEventHandler : MonoBehaviour
 {
     public static event Action OnGameOverButtonActive;
     

@@ -11,8 +11,9 @@ public class GameOverUIController : MonoBehaviour
     [Header("Main Component")] 
     [SerializeField] private float displayTextSpeed;
     [SerializeField] private float displayButtonSpeed;
-    private string gameOverText;
+    [SerializeField] private string[] gameOverText;
     [SerializeField] private TextMeshProUGUI gameOverTextUI;
+    private string gameOverTextTemp;
     
     private bool isGameOverTextDone;
     private bool isAddingRichTextTag;
@@ -26,12 +27,11 @@ public class GameOverUIController : MonoBehaviour
 
     private void Start()
     {
-        gameOverText = gameOverTextUI.text;
+        gameOverTextTemp = gameOverTextUI.text;
         isGameOverTextDone = false;
         buttonObject.SetActive(false);
 
         StartCoroutine(DisplayLine());
-       
     }
 
     private void Update()
@@ -48,7 +48,7 @@ public class GameOverUIController : MonoBehaviour
 
     private IEnumerator DisplayLine()
     {
-        var gameOverTextLetters = gameOverText.ToCharArray();
+        var gameOverTextLetters = gameOverTextTemp.ToCharArray();
         isAddingRichTextTag = false;
         gameOverTextUI.text = "";
 
@@ -81,6 +81,9 @@ public class GameOverUIController : MonoBehaviour
         yield return new WaitForSeconds(displayButtonSpeed);
         buttonObject.SetActive(true);
     }
+
+    public void SetTextPlayerCaught() => gameOverTextUI.text = gameOverText[0];
+    public void SetTextTimesUp() => gameOverTextUI.text = gameOverText[1];
 
     #endregion
     

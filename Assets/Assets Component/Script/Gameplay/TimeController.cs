@@ -65,6 +65,11 @@ public class TimeController : MonoBehaviour
         seconds = Mathf.FloorToInt(time % 60);
         
         timerTextUI.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        
+        if (time <= 10.0f)
+        {
+            timerTextUI.color = Color.red;
+        }
     }
 
     #endregion

@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 
-public class GameManager : MonoSingleton<GameManager>
+public class GameManager : MonoBehaviour
 {
     #region Variable
 
@@ -14,9 +14,8 @@ public class GameManager : MonoSingleton<GameManager>
     [SerializeField] private RectTransform sceneFader;
     
     [Header("Game Over Component")]
-    [SerializeField] private GameObject timePanel;
-    [SerializeField] private GameObject catchPanel;
-    [SerializeField] private GameObject alertLampPanel;
+    [SerializeField] private GameObject gameOverPanel;
+    [SerializeField] private GameObject alarmLampPanel;
 
     [Header("Reference")]
     private EleController eleController;
@@ -28,7 +27,7 @@ public class GameManager : MonoSingleton<GameManager>
     private void OnEnable()
     {
         GameEventHandler.OnTimerEnd += TimerEnd;
-        GameOverButtonEventHandler.OnGameOverButtonActive += StopGameActivities;
+        GameOverUIEventHandler.OnGameOverButtonActive += StopGameActivities;
         GameEventHandler.OnPlayerCatch += PlayerCatch;
         GameEventHandler.OnGameWin += PlayerWin;
     }
@@ -36,7 +35,7 @@ public class GameManager : MonoSingleton<GameManager>
     private void OnDisable()
     {
         GameEventHandler.OnTimerEnd -= TimerEnd;
-        GameOverButtonEventHandler.OnGameOverButtonActive -= StopGameActivities;
+        GameOverUIEventHandler.OnGameOverButtonActive -= StopGameActivities;
         GameEventHandler.OnPlayerCatch -= PlayerCatch;
         GameEventHandler.OnGameWin -= PlayerWin;
     }
@@ -45,9 +44,8 @@ public class GameManager : MonoSingleton<GameManager>
     {
         StartFader();
         
-        timePanel.SetActive(false);
-        catchPanel.SetActive(false);
-        alertLampPanel.SetActive(false);
+        gameOverPanel.SetActive(false);
+        alarmLampPanel.SetActive(false);
     }
     
     #endregion
@@ -126,24 +124,25 @@ public class GameManager : MonoSingleton<GameManager>
         eleController.StopEleMovement();
         yield return new WaitForSeconds(0.3f);
         
-        timePanel.SetActive(true);
+        gameOverPanel.GetComponent<GameOverUIController>().SetTextTimesUp();
+        gameOverPanel.SetActive(true);
     }
-    
-    private void StopGameActivities() => Time.timeScale = 0f;
     
     private IEnumerator PlayerCatch()
     {
         eleController.StopEleMovement();
-        alertLampPanel.SetActive(true);
+        alarmLampPanel.SetActive(true);
         FindObjectOfType<AudioManager>().Play(SoundEnum.SFX_Alarm);
         yield return new WaitForSeconds(3.5f);
         
         FindObjectOfType<AudioManager>().Stop(SoundEnum.SFX_Alarm);
-        alertLampPanel.SetActive(false);
-        catchPanel.SetActive(true);
+        alarmLampPanel.SetActive(false);
+        gameOverPanel.GetComponent<GameOverUIController>().SetTextPlayerCaught();
+        gameOverPanel.SetActive(true);
     }
 
     public void PlayerWin() => Debug.Log("Win lur");
+    private void StopGameActivities() => Time.timeScale = 0f;
 
     #endregion
 

@@ -45,5 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneFader: {fileID: 0}
-  timePanel: {fileID: 0}
-  alertLampPanel: {fileID: 0}
+  gameOverPanel: {fileID: 8394586747002873479, guid: 2d89b2462f3106944b6ecd3711ef6153, type: 3}
+  alarmLampPanel: {fileID: 0}

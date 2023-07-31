@@ -94,7 +94,8 @@ public class QuizController : MonoBehaviour
     private IEnumerator CorrectAnswer()
     {
         quizScore++;
-        SetTextButtonGreen();
+        // SetTextButtonGreen();
+        SetTextButtonColor();
         
         yield return new WaitForSeconds(0.5f);
         questionAndAnswers.RemoveAt(currentQuestion);
@@ -103,13 +104,25 @@ public class QuizController : MonoBehaviour
 
     private IEnumerator WrongAnswer()
     {
-        SetTextButtonRed();
+        // SetTextButtonRed();
+        SetTextButtonColor();
         
         yield return new WaitForSeconds(0.5f);
         questionAndAnswers.RemoveAt(currentQuestion);
         GenerateQuestion();
     }
 
+    private void SetTextButtonColor()
+    {
+        for (int i = 0; i < optionsPanel.Length; i++)
+        {
+            var buttonTextUI = optionsPanel[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+            
+            buttonTextUI.color = i == questionAndAnswers[currentQuestion].correctAnswer ? 
+                new Color(60.0f, 207.0f, 78.0f, 1f) : Color.red;
+        }
+    }
+    
     private void SetTextButtonGreen()
     {
         for (int i = 0; i < optionsPanel.Length; i++)
@@ -117,8 +130,7 @@ public class QuizController : MonoBehaviour
             var buttonTextUI = optionsPanel[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>();
             if (i == questionAndAnswers[currentQuestion].correctAnswer)
             {
-                buttonTextUI.text = buttonTextUI.text.Replace(buttonTextUI.text, 
-                    "<color=#3ccf4e>" + buttonTextUI.text + "</color>");
+                buttonTextUI.color = new Color(60.0f, 207.0f, 78.0f, 1f);
             }
         }
     }
@@ -130,8 +142,7 @@ public class QuizController : MonoBehaviour
             var buttonTextUI = optionsPanel[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>();
             if (i == tempAnswerInput)
             {
-                buttonTextUI.text = buttonTextUI.text.Replace(buttonTextUI.text, 
-                    "<color=#d71313>" + buttonTextUI.text + "</color>");
+                buttonTextUI.color = Color.red;
             }
         }
     }
