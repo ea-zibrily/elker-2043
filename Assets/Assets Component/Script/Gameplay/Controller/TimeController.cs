@@ -6,11 +6,15 @@ public class TimeController : MonoBehaviour
 {
     #region Variable
     
+    [Header("Timer Component")]
     [SerializeField] private float currentTime;
     [SerializeField] private bool isTimerStart;
     [SerializeField] private TextMeshProUGUI timerTextUI;
-    private GameEventHandler gameEventHandler;
     
+    [Header("Reference")]
+    private EleDetector eleDetector;
+    private GameEventHandler gameEventHandler;
+
     #endregion
 
     #region MonoBehaviour Callback
@@ -18,6 +22,7 @@ public class TimeController : MonoBehaviour
     private void Awake()
     {
         gameEventHandler = GameObject.Find("GameEvent").GetComponent<GameEventHandler>();
+        eleDetector = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<EleDetector>();
     }
 
     private void Start()
@@ -27,6 +32,11 @@ public class TimeController : MonoBehaviour
 
     private void Update()
     {
+        if (eleDetector.IsPlayerCatch)
+        {
+            return;
+        }
+        
         TimerController();
     }
 
@@ -50,7 +60,7 @@ public class TimeController : MonoBehaviour
         {
             GameEventHandler.CameraShakeEvent();
             gameEventHandler.TimerEndEvent();
-            
+
             isTimerStart = false;
             currentTime = 0f;
         }

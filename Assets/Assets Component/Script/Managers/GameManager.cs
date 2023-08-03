@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Tsukuyomi.Utilities;
 using UnityEngine.Serialization;
 
 public class GameManager : MonoBehaviour
@@ -12,8 +13,9 @@ public class GameManager : MonoBehaviour
 
     [Header("Scene Component")]
     [SerializeField] private RectTransform sceneFader;
-    
-    [Header("Game Over Component")]
+
+    [Header("Game Over Component")] 
+    [SerializeField] private float alarmTime;
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private GameObject alarmLampPanel;
 
@@ -23,7 +25,12 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region MonoBehaviour Callbacks
-    
+
+    private void Awake()
+    {
+        eleController = GameObject.FindGameObjectWithTag("Player").GetComponent<EleController>();
+    }
+
     private void OnEnable()
     {
         GameEventHandler.OnTimerEnd += TimerEnd;
@@ -114,36 +121,45 @@ public class GameManager : MonoBehaviour
         
     private void LoadGame () => SceneManager.LoadScene (SceneManager.GetActiveScene().buildIndex);
     private void LoadNextLevel () => SceneManager.LoadScene (SceneManager.GetActiveScene().buildIndex + 1);
-
+    
     #endregion
-
+    
     #region Tsukuyomi Game Event Callbacks
-
+    
     private IEnumerator TimerEnd()
     {
         eleController.StopEleMovement();
+        GameEventHandler.DisableGamePauseEvent();
         yield return new WaitForSeconds(0.3f);
         
-        gameOverPanel.GetComponent<GameOverUIController>().SetTextTimesUp();
+        gameOverPanel.GetComponent<GameUIController>().SetTextTimesUp();
         gameOverPanel.SetActive(true);
     }
     
     private IEnumerator PlayerCatch()
     {
         eleController.StopEleMovement();
+        GameEventHandler.DisableGamePauseEvent();
         alarmLampPanel.SetActive(true);
         FindObjectOfType<AudioManager>().Play(SoundEnum.SFX_Alarm);
-        yield return new WaitForSeconds(3.5f);
+        yield return new WaitForSeconds(alarmTime);
         
         FindObjectOfType<AudioManager>().Stop(SoundEnum.SFX_Alarm);
         alarmLampPanel.SetActive(false);
-        gameOverPanel.GetComponent<GameOverUIController>().SetTextPlayerCaught();
+        gameOverPanel.GetComponent<GameUIController>().SetTextPlayerCaught();
         gameOverPanel.SetActive(true);
     }
 
-    public void PlayerWin() => Debug.Log("Win lur");
-    private void StopGameActivities() => Time.timeScale = 0f;
+    public void PlayerWin()
+    {
+        eleController.StopEleMovement();
+        GameEventHandler.DisableGamePauseEvent();
 
+        gameOverPanel.GetComponent<GameUIController>().SetTextGameWin();
+        gameOverPanel.SetActive(true);
+    }
+    private void StopGameActivities() => Time.timeScale = 0f;
+    
     #endregion
 
 

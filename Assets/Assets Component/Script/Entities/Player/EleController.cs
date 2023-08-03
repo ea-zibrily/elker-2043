@@ -25,6 +25,7 @@ public class EleController : MonoBehaviour
     [Header("Reference")] 
     private Rigidbody2D myRb;
     private Animator myAnim;
+    private EleDetector eleDetector;
 
     #region MonoBehaviour Callbacks
 
@@ -32,6 +33,7 @@ public class EleController : MonoBehaviour
     {
         myRb = GetComponent<Rigidbody2D>();
         myAnim = GetComponentInChildren<Animator>();
+        eleDetector = GetComponentInChildren<EleDetector>();
     }
     
     private void Start()
@@ -110,11 +112,16 @@ public class EleController : MonoBehaviour
         }
     }
 
-    public void ResumeEleMovement() => isCaught = false;
+    public void ResumeEleMovement()
+    {
+        isCaught = false;
+        eleDetector.gameObject.SetActive(true);
+    }
 
     public void StopEleMovement()
     {
         isCaught = true;
+        eleDetector.gameObject.SetActive(false);
         myRb.velocity = Vector2.zero;
         playerMoveInput.x = 0;
     }

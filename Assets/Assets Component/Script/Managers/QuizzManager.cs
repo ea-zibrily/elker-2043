@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class QuizzManager : MonoBehaviour
@@ -8,9 +9,11 @@ public class QuizzManager : MonoBehaviour
 
     [Header("Computer UI Component")]
     [SerializeField] private GameObject[] descriptionPanelUI;
-    
+
     [Header("Reference")]
-    private QuizzEventHandler quizController;
+    private QuizzEventHandler quizEventHandler;
+    private ComputerNormalController computerNormalController;
+    private EleController eleController;
 
     #endregion
 
@@ -18,35 +21,46 @@ public class QuizzManager : MonoBehaviour
 
     private void Awake()
     {
-        quizController = GameObject.Find("QuizController").GetComponent<QuizzEventHandler>();
+        quizEventHandler = GameObject.Find("QuizController").GetComponent<QuizzEventHandler>();
+        computerNormalController = GameObject.FindGameObjectWithTag("ComputerNormal").
+            GetComponent<ComputerNormalController>();
+        eleController = GameObject.FindGameObjectWithTag("Player").GetComponent<EleController>();
     }
 
     private void OnEnable()
     {
-        quizController.OnHackSuccess += HackSuccess;
-        quizController.OnHackFailed += HackFailed;
+        quizEventHandler.OnHackSuccess += HackSuccess;
+        quizEventHandler.OnHackFailed += HackFailed;
     }
-
+    
     private void OnDisable()
     {
-        quizController.OnHackSuccess -= HackSuccess;
-        quizController.OnHackFailed -= HackFailed;
+        quizEventHandler.OnHackSuccess -= HackSuccess;
+        quizEventHandler.OnHackFailed -= HackFailed;
     }
 
     #endregion
 
     #region Tsukuyomi Callbacks
-
-    private IEnumerator HackSuccess()
+    
+    private void HackSuccess()
     {
-        // Some logic here
-        yield return new WaitForSeconds(1f);
+        descriptionPanelUI[1].SetActive(true);
+        descriptionPanelUI[2].SetActive(true);
+        computerNormalController.IsHackDone = true;
     }
     
-    private IEnumerator HackFailed()
+    private void HackFailed()
     {
-        // Some logic here
-        yield return new WaitForSeconds(1f);
+        descriptionPanelUI[1].SetActive(true);
+        descriptionPanelUI[3].SetActive(true);
+        computerNormalController.IsHackDone = false;
+    }
+
+    public void CloseComputerPanel()
+    {
+        descriptionPanelUI[0].SetActive(false);
+        eleController.ResumeEleMovement();
     }
 
     #endregion

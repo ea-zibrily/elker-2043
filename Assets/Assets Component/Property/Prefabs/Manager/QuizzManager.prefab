@@ -44,4 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9014fa662d2c41daaf1e003cbb140662, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  computerUI: {fileID: 0}
+  descriptionPanelUI:
+  - {fileID: 0}
+  - {fileID: 0}
+  buttonAlertText: Press Esc to Close
+  buttonAlertTextUI: {fileID: 0}

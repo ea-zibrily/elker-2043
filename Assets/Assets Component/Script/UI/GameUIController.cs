@@ -4,21 +4,22 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class GameOverUIController : MonoBehaviour
+public class GameUIController : MonoBehaviour
 {
     #region Variable
-    
-    [Header("Main Component")] 
+
+    [Header("Game Condition Component")] 
     [SerializeField] private float displayTextSpeed;
     [SerializeField] private float displayButtonSpeed;
-    [SerializeField] private string[] gameOverText;
-    [SerializeField] private TextMeshProUGUI gameOverTextUI;
-    private string gameOverTextTemp;
+    [SerializeField] private string gameOverText;
+    [SerializeField] private string[] gameOverTextTemp;
     
     private bool isGameOverTextDone;
     private bool isAddingRichTextTag;
 
     [Space]
+    [SerializeField] TextMeshProUGUI gameOverTextUI;
+    [SerializeField] TextMeshProUGUI headerTextUI;
     [SerializeField] private GameObject buttonObject;
 
     #endregion
@@ -27,7 +28,7 @@ public class GameOverUIController : MonoBehaviour
 
     private void Start()
     {
-        gameOverTextTemp = gameOverTextUI.text;
+        gameOverText = gameOverTextUI.text;
         isGameOverTextDone = false;
         buttonObject.SetActive(false);
 
@@ -48,7 +49,7 @@ public class GameOverUIController : MonoBehaviour
 
     private IEnumerator DisplayLine()
     {
-        var gameOverTextLetters = gameOverTextTemp.ToCharArray();
+        var gameOverTextLetters = gameOverText.ToCharArray();
         isAddingRichTextTag = false;
         gameOverTextUI.text = "";
 
@@ -81,10 +82,27 @@ public class GameOverUIController : MonoBehaviour
         yield return new WaitForSeconds(displayButtonSpeed);
         buttonObject.SetActive(true);
     }
+    
+    public void SetTextGameWin()
+    {
+        gameOverTextUI.text = gameOverTextTemp[0];
+        headerTextUI.text = "Game Win";
+    }
 
-    public void SetTextPlayerCaught() => gameOverTextUI.text = gameOverText[0];
-    public void SetTextTimesUp() => gameOverTextUI.text = gameOverText[1];
+    public void SetTextPlayerCaught()
+    {
+        gameOverTextUI.text = gameOverTextTemp[1];
+        headerTextUI.text = "Game Over";
+    }
 
+    public void SetTextTimesUp()
+    {
+        gameOverTextUI.text = gameOverTextTemp[2];
+        headerTextUI.text = "Game Over";
+    }
+    
+    
+    
     #endregion
     
 }

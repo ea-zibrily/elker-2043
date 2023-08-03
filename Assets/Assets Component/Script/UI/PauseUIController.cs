@@ -7,19 +7,36 @@ public class PauseUIController : MonoBehaviour
 
     [SerializeField] private GameObject pausePanel;
     private bool isGamePause;
+    private bool isGameOver;
 
     #endregion
 
     #region MonoBehaviour Callbacks
 
+    private void OnEnable()
+    {
+        GameEventHandler.OnDisableGamePause += DisablePause;
+    }
+
+    private void OnDisable()
+    {
+        GameEventHandler.OnDisableGamePause -= DisablePause;
+    }
+
     private void Start()
     {
         pausePanel.SetActive(false);
         isGamePause = false;
+        isGameOver = false;
     }
 
     private void Update()
     {
+        if (isGameOver)
+        {
+            return;
+        }
+        
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (isGamePause)
@@ -32,7 +49,7 @@ public class PauseUIController : MonoBehaviour
             }
         }
     }
-
+    
     #endregion
 
     #region Tsukuyomi Callbacks
@@ -51,5 +68,7 @@ public class PauseUIController : MonoBehaviour
         Time.timeScale = 1f;
     }
 
+    private void DisablePause() => isGameOver = true;
+    
     #endregion
 }

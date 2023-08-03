@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 3446903905771440068}
   m_Layer: 0
   m_Name: Computer_1
-  m_TagString: Untagged
+  m_TagString: ComputerHack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -276,8 +276,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.33859998, y: 0.32439995, z: 0}
-    m_Extent: {x: 2.2288, y: 1.5417, z: 0}
+    m_Center: {x: -0.33864993, y: 0.32675004, z: 0}
+    m_Extent: {x: 2.21975, y: 1.54125, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0

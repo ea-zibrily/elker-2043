@@ -7,6 +7,8 @@ TagManager:
   - Item
   - EnemyBody
   - EnemyLighting
+  - ComputerNormal
+  - ComputerHack
   layers:
   - Default
   - TransparentFX

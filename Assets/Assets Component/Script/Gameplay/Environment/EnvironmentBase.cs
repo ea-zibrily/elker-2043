@@ -14,7 +14,8 @@ public class EnvironmentBase : MonoBehaviour
     #endregion
 
     #region Tsukuyomi Callbacks
-
+    
+    [Tooltip("Harus dipanggil di Start()")]
     public void EnvironmentInitialize()
     {
         IsPlayerInside = false;

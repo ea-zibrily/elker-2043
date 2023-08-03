@@ -2,9 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
+using TMPro;
+using Tsukuyomi.Utilities;
 
 public class QuizController : MonoBehaviour
 {
@@ -12,19 +12,20 @@ public class QuizController : MonoBehaviour
     
     [Header("Quiz Component")]
     [SerializeField] private List<QuestionAndAnswer> questionAndAnswers;
+    [SerializeField] private List<QuestionAndAnswer> tempQuestionAndAnswers;
     [SerializeField] private GameObject[] optionsPanel;
     private int currentQuestion;
     private int quizScore;
     private int questionTotal;
     private int tempAnswerInput;
-    
+
     private Coroutine checkAnswer;
 
     [SerializeField] private TextMeshProUGUI questionTextUI;
     [SerializeField] private TextMeshProUGUI scoreUI;
     
-   [Header("Reference")]
-   private QuizzEventHandler quizzEventHandler;
+    [Header("Reference")]
+    private QuizzEventHandler quizzEventHandler;
    
     #endregion
     
@@ -34,7 +35,7 @@ public class QuizController : MonoBehaviour
     {
         quizzEventHandler = GetComponent<QuizzEventHandler>();
     }
-
+    
     private void Start()
     {
         questionTotal = questionAndAnswers.Count;
@@ -47,10 +48,17 @@ public class QuizController : MonoBehaviour
     }
 
     #endregion
-
-
+    
     #region Tsukuyomi Callbacks
-
+    
+    private void AddQuestionAndAnswers()
+    {
+        for (int i = 0; i < tempQuestionAndAnswers.Count; i++)
+        {
+            questionAndAnswers.Add(tempQuestionAndAnswers[i]);
+        }
+    }
+    
     private void GenerateQuestion()
     {
         if(questionAndAnswers.Count > 0)
@@ -58,22 +66,24 @@ public class QuizController : MonoBehaviour
             currentQuestion = Random.Range(0, questionAndAnswers.Count);
             questionTextUI.text = questionAndAnswers[currentQuestion].question;
             SetAnswer();
+            SetTextButtonDefault();
         }
         else
         {
             if (quizScore < questionTotal)
             {
                 quizzEventHandler.HackFailedEvent();
-                Debug.Log("Hack Failed");
+                AddQuestionAndAnswers();
+                quizScore = 0;
             }
             else
             {
                 quizzEventHandler.HackSuccessEvent();
-                Debug.Log("Hack Success");
+                tempQuestionAndAnswers.Clear();
             }
         }
     }
-
+    
     private void SetAnswer()
     {
         for (int i = 0; i < optionsPanel.Length; i++)
@@ -82,65 +92,55 @@ public class QuizController : MonoBehaviour
                 = questionAndAnswers[currentQuestion].answer[i];
         }
     }
-
+    
     public void InputAnswer(int answer)
     {
         tempAnswerInput = answer - 1;
         
         checkAnswer = tempAnswerInput == questionAndAnswers[currentQuestion].correctAnswer ? 
             StartCoroutine(CorrectAnswer()) : StartCoroutine(WrongAnswer());
+        
+        tempQuestionAndAnswers.Add(questionAndAnswers[currentQuestion]);
+        questionAndAnswers.RemoveAt(currentQuestion);
     }
-
+    
     private IEnumerator CorrectAnswer()
     {
-        quizScore++;
-        // SetTextButtonGreen();
         SetTextButtonColor();
-        
+
         yield return new WaitForSeconds(0.5f);
-        questionAndAnswers.RemoveAt(currentQuestion);
+        quizScore++;
         GenerateQuestion();
     }
-
+    
     private IEnumerator WrongAnswer()
     {
-        // SetTextButtonRed();
         SetTextButtonColor();
-        
+
         yield return new WaitForSeconds(0.5f);
-        questionAndAnswers.RemoveAt(currentQuestion);
         GenerateQuestion();
     }
-
+    
+    private void SetTextButtonDefault()
+    {
+        for (int i = 0; i < optionsPanel.Length; i++)
+        {
+            var buttonTextUI = optionsPanel[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+            buttonTextUI.color = Color.black;
+        }
+    }
+    
     private void SetTextButtonColor()
     {
         for (int i = 0; i < optionsPanel.Length; i++)
         {
             var buttonTextUI = optionsPanel[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>();
-            
-            buttonTextUI.color = i == questionAndAnswers[currentQuestion].correctAnswer ? 
-                new Color(60.0f, 207.0f, 78.0f, 1f) : Color.red;
-        }
-    }
-    
-    private void SetTextButtonGreen()
-    {
-        for (int i = 0; i < optionsPanel.Length; i++)
-        {
-            var buttonTextUI = optionsPanel[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+
             if (i == questionAndAnswers[currentQuestion].correctAnswer)
             {
-                buttonTextUI.color = new Color(60.0f, 207.0f, 78.0f, 1f);
+                buttonTextUI.color = Color.green;
             }
-        }
-    }
-
-    private void SetTextButtonRed()
-    {
-        for (int i = 0; i < optionsPanel.Length; i++)
-        {
-            var buttonTextUI = optionsPanel[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>();
-            if (i == tempAnswerInput)
+            else if (i == tempAnswerInput)
             {
                 buttonTextUI.color = Color.red;
             }

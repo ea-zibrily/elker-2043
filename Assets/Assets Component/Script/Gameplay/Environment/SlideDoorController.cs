@@ -12,6 +12,7 @@ public class SlideDoorController : MonoBehaviour
     [FormerlySerializedAs("doorCloseTime")]
     [Header("Slide Door Component")]
     [SerializeField] private float closeTime;
+    [field: SerializeField] public bool IsLocked { get; set; }
     
     [Header("Reference")]
     private SlideDoorEventHandler slideDoorEventHandler;
@@ -56,10 +57,10 @@ public class SlideDoorController : MonoBehaviour
     #endregion
 
     #region Collider Callbacks
-
+    
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !IsLocked)
         {
             myAnim.SetBool("IsOpen", true);
         }
@@ -67,7 +68,7 @@ public class SlideDoorController : MonoBehaviour
     
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !IsLocked)
         {
             StartCoroutine(CloseDoor());
         }

@@ -1026,7 +1026,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4032251851171010516
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1064,8 +1064,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayTextSpeed: 0.1
   displayButtonSpeed: 1
-  gameOverText:
-  - You're Caught, <color=#04e9ac>Hacker!</color>
+  gameOverText: 
+  gameEndTextTemp:
+  - You're Great, <color=#04e9ac>Hacker!</color>
+  - You're Cought, <color=#04e9ac>Hacker!</color>
   - Times Up, <color=#04e9ac>Hacker!</color>
   gameOverTextUI: {fileID: 4885946194005638588}
+  headerTextUI: {fileID: 7273840150413181861}
   buttonObject: {fileID: 6365158397302031884}

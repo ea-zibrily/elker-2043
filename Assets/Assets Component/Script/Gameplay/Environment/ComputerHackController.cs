@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class HackComputerController : EnvironmentBase
+public class ComputerHackController : EnvironmentBase
 {
     #region Variable
 
@@ -41,11 +41,6 @@ public class HackComputerController : EnvironmentBase
     private void Update()
     {
         HoldObject();
-        
-        if (isComplete)
-        {
-            GameEventHandler.GameWinEvent();
-        }
     }
 
     #endregion
@@ -86,9 +81,13 @@ public class HackComputerController : EnvironmentBase
         }
         else
         {
+            GameEventHandler.CameraShakeEvent();
+            
             fillBarUI.fillAmount = maxFillBar;
             holdPanelAnim.SetBool("IsHolding", false);
             isComplete = true;
+            
+            GameEventHandler.GameWinEvent();
         }
     }
 

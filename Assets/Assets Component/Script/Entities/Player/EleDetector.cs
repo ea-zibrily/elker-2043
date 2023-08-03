@@ -11,6 +11,7 @@ public class EleDetector : MonoBehaviour
 
    public List<EnemyBase> enemyDetected;
    private GameEventHandler gameEventHandler;
+   public bool IsPlayerCatch {get; private set;}
 
    #endregion
 
@@ -23,6 +24,7 @@ public class EleDetector : MonoBehaviour
 
    private void Start()
    {
+      IsPlayerCatch = false;
       var isTrigger = gameObject.GetComponent<BoxCollider2D>().isTrigger;
       
       if (!isTrigger)
@@ -45,6 +47,7 @@ public class EleDetector : MonoBehaviour
          enemyDetected.Add(enemyObj);
       }
       
+      IsPlayerCatch = true;
       GameEventHandler.CameraShakeEvent();
       StopEnemyDetectedMovement();
       gameEventHandler.PlayerCatchEvent();

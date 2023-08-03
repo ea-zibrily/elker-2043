@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class ComputerController : EnvironmentBase
+public class ComputerNormalController : EnvironmentBase
 {
     #region Variable
 
@@ -9,12 +9,13 @@ public class ComputerController : EnvironmentBase
     [SerializeField] private GameObject computerPanelUI;
     [SerializeField] private GameObject promptPanelUI;
 
+    public bool IsHackDone { get; set; }
     private bool isComputerOpen;
+    private bool isPromptOpen;
 
     [Header("Reference")]
     private EleController eleController;
-    private GameObject eleDetectorObject;
-    
+
     #endregion
 
     #region MonoBehaviour Callbacks
@@ -22,15 +23,14 @@ public class ComputerController : EnvironmentBase
     private void Awake()
     {
         eleController = GameObject.FindGameObjectWithTag("Player").GetComponent<EleController>();
-        eleDetectorObject = GameObject.Find("EleDetector");
     }
 
     private void Start()
     {
         EnvironmentInitialize();
         isComputerOpen = false;
-        
-        Debug.Log($"eleDetectorObject name: {eleDetectorObject}");
+        IsHackDone = false;
+        isPromptOpen = false;
     }
 
     private void Update()
@@ -40,15 +40,27 @@ public class ComputerController : EnvironmentBase
             return;
         }
         
-        if (Input.GetKeyDown(KeyCode.X))
+        if (IsHackDone)
         {
-            if (!isComputerOpen)
+            buttonAlertTextUI.text = "";
+        }
+        else
+        {
+            if (isPromptOpen)
             {
-                OpenComputer();
+                return;
             }
-            else
+        
+            if (Input.GetKeyDown(KeyCode.C))
             {
-                CloseComputer();
+                if (!isComputerOpen)
+                {
+                    OpenComputer();
+                }
+                else
+                {
+                    CloseComputer();
+                }
             }
         }
     }
@@ -61,7 +73,6 @@ public class ComputerController : EnvironmentBase
     {
         computerPanelUI.SetActive(true);
         eleController.StopEleMovement();
-        eleDetectorObject.SetActive(false);
         isComputerOpen = true;
     }
 
@@ -69,11 +80,14 @@ public class ComputerController : EnvironmentBase
     {
         computerPanelUI.SetActive(false);
         eleController.ResumeEleMovement();
-        eleDetectorObject.SetActive(true);
         isComputerOpen = false;
     }
-    
-    public void OpenPromptPanel() => promptPanelUI.SetActive(true);
+
+    public void OpenPromptPanel()
+    {
+        promptPanelUI.SetActive(true);
+        isPromptOpen = true;
+    }
 
     #endregion
 }

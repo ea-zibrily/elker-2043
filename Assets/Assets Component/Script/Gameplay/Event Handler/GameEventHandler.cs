@@ -21,10 +21,15 @@ public class GameEventHandler : MonoBehaviour
     public delegate void GameWin();
     public static event GameWin OnGameWin;
     
+    // Disable Game Pause
+    public delegate void DisableGamePause();
+    public static event DisableGamePause OnDisableGamePause;
+    
     
     
     public static void CameraShakeEvent() => OnCameraShake?.Invoke();
     public  void PlayerCatchEvent() => StartCoroutine(OnPlayerCatch?.Invoke());
     public void TimerEndEvent() => StartCoroutine(OnTimerEnd?.Invoke());
     public static void GameWinEvent() => OnGameWin?.Invoke();
+    public static void DisableGamePauseEvent() => OnDisableGamePause?.Invoke();
 }
