@@ -17,6 +17,7 @@ public class ComputerHackController : EnvironmentBase
     
     [Header("Reference")]
     private Animator holdPanelAnim;
+    private GameEventHandler gameEventHandler;
 
     #endregion
 
@@ -25,6 +26,7 @@ public class ComputerHackController : EnvironmentBase
     private void Awake()
     {
         holdPanelAnim = GetComponentInChildren<Animator>();
+        gameEventHandler = GameObject.Find("GameEvent").GetComponent<GameEventHandler>();
     }
 
     private void Start()
@@ -87,7 +89,7 @@ public class ComputerHackController : EnvironmentBase
             holdPanelAnim.SetBool("IsHolding", false);
             isComplete = true;
             
-            GameEventHandler.GameWinEvent();
+            gameEventHandler.GameWinEvent();
         }
     }
 

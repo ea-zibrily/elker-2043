@@ -28,8 +28,7 @@ public class AudioController : MonoBehaviour
     }
 
     #endregion
-
-
+    
     #region Tsukuyomi Callbacks
 
     private void PlayOneBGM(SoundEnum playEnum) => FindObjectOfType<AudioManager>().Play(playEnum);

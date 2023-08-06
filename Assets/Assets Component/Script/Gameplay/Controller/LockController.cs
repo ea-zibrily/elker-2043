@@ -60,6 +60,7 @@ public class LockController : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         
         tempKey = "";
+        lockKeyTextUI.color = Color.white;
         IsLockOpen = false;
     }
     

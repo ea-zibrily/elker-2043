@@ -50,28 +50,33 @@ public class SlidingDoorLockedController : EnvironmentBase
         }
         else
         {
-            if (!Input.GetKeyDown(KeyCode.X))
-            {
-                return;
-            }
-            
-            if(!isLockPanelOpen)
-            {
-                OpenLockPanel();
-            }
-            else
-            {
-                CloseLockPanel();
-            }
+            InputPanel();
+            SetActiveSlideDoor();
         }
 
-        SetActiveSlideDoor();
     }
 
     #endregion
 
     #region Tsukuyomi Callbacks
 
+    private void InputPanel()
+    {
+        if (!Input.GetKeyDown(KeyCode.X))
+        {
+            return;
+        }
+            
+        if(!isLockPanelOpen)
+        {
+            OpenLockPanel();
+        }
+        else
+        {
+            CloseLockPanel();
+        }
+    }
+    
     private void OpenLockPanel()
     {
         eleController.StopEleMovement();
@@ -92,6 +97,8 @@ public class SlidingDoorLockedController : EnvironmentBase
     {
         if (lockController.IsLockOpen)
         {
+            Debug.Log("Lock is open");
+            
             eleController.ResumeEleMovement();
             lockPanelUI.SetActive(false);
             isLockPanelDone = true;

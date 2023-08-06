@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8710742283716026565
 MonoBehaviour:
@@ -45,17 +45,66 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - name: SFX_Walk
+  - name: BGM_Main Menu
+    clip: {fileID: 8300000, guid: 2b22ad9156146f24aade4807a36ef1b0, type: 3}
+    priority: 150
+    volume: 0.7
+    pitch: 0
+    loop: 1
+    source: {fileID: 0}
+  - name: BGM_Ingame
+    clip: {fileID: 8300000, guid: 704e2a447384ec34bb4770eeeb9b366b, type: 3}
+    priority: 45
+    volume: 0.55
+    pitch: 0
+    loop: 1
+    source: {fileID: 0}
+  - name: SFX_Ele
+    clip: {fileID: 8300000, guid: 8c849a4a73ae79a499bcc8bb26a7cc7e, type: 3}
+    priority: 100
+    volume: 0.5
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: SFX_Rohox
+    clip: {fileID: 8300000, guid: 8c7dc8edae7dd7041bf95b8be5ae3b0b, type: 3}
+    priority: 25
+    volume: 0.213
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: SFX_Ceetez
+    clip: {fileID: 0}
+    priority: 25
+    volume: 0.213
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: SFX_Alarm
+    clip: {fileID: 0}
+    priority: 0
+    volume: 0
+    pitch: 0
+    loop: 1
+    source: {fileID: 0}
+  - name: SFX_Typing
     clip: {fileID: 0}
     priority: 0
     volume: 0
     pitch: 0
     loop: 0
     source: {fileID: 0}
-  - name: BGM_Ingame
-    clip: {fileID: 0}
-    priority: 0
-    volume: 0
+  - name: SFX_Lift
+    clip: {fileID: 8300000, guid: e1347206c0dcb1e4ca92aee26e0b2394, type: 3}
+    priority: 80
+    volume: 0.712
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: SFX_Click
+    clip: {fileID: 8300000, guid: e700a047ee9e9014bb4cc034171c946a, type: 3}
+    priority: 200
+    volume: 1
     pitch: 0
     loop: 0
     source: {fileID: 0}

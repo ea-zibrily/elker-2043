@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     [Header("Game Over Component")] 
     [SerializeField] private float alarmTime;
     [SerializeField] private GameObject gameOverPanel;
+    [SerializeField] private GameObject gameWinPanel;
     [SerializeField] private GameObject alarmLampPanel;
 
     [Header("Reference")]
@@ -52,6 +53,7 @@ public class GameManager : MonoBehaviour
         StartFader();
         
         gameOverPanel.SetActive(false);
+        gameWinPanel.SetActive(false);
         alarmLampPanel.SetActive(false);
     }
     
@@ -94,7 +96,8 @@ public class GameManager : MonoBehaviour
         
         LeanTween.alpha (sceneFader, 0, 0);
         LeanTween.alpha (sceneFader, 1, 1f).setOnComplete (() => {
-            SceneManager.LoadScene (1);
+            SceneManager.LoadScene (0);
+            Time.timeScale = 1;
         });
     }
     
@@ -106,6 +109,7 @@ public class GameManager : MonoBehaviour
         LeanTween.alpha (sceneFader, 1, 1f).setOnComplete (() => {
             // Example for little pause before laoding the next scene
             Invoke ("LoadGame", 0.5f);
+            Time.timeScale = 1;
         });
     }
     private void OpenNextLevelScene()
@@ -116,6 +120,7 @@ public class GameManager : MonoBehaviour
         LeanTween.alpha (sceneFader, 1, 1f).setOnComplete (() => {
             // Example for little pause before laoding the next scene
             Invoke ("LoadNextLevel", 0.5f);
+            Time.timeScale = 1;
         });
     }
         
@@ -132,7 +137,7 @@ public class GameManager : MonoBehaviour
         GameEventHandler.DisableGamePauseEvent();
         yield return new WaitForSeconds(0.3f);
         
-        gameOverPanel.GetComponent<GameUIController>().SetTextTimesUp();
+        gameOverPanel.GetComponent<GameOverUIController>().SetTextTimesUp();
         gameOverPanel.SetActive(true);
     }
     
@@ -146,17 +151,17 @@ public class GameManager : MonoBehaviour
         
         FindObjectOfType<AudioManager>().Stop(SoundEnum.SFX_Alarm);
         alarmLampPanel.SetActive(false);
-        gameOverPanel.GetComponent<GameUIController>().SetTextPlayerCaught();
+        gameOverPanel.GetComponent<GameOverUIController>().SetTextPlayerCaught();
         gameOverPanel.SetActive(true);
     }
 
-    public void PlayerWin()
+    private IEnumerator PlayerWin()
     {
         eleController.StopEleMovement();
         GameEventHandler.DisableGamePauseEvent();
-
-        gameOverPanel.GetComponent<GameUIController>().SetTextGameWin();
-        gameOverPanel.SetActive(true);
+        yield return new WaitForSeconds(0.3f);
+        
+        gameWinPanel.SetActive(true);
     }
     private void StopGameActivities() => Time.timeScale = 0f;
     
