@@ -10,9 +10,14 @@ public class TimeController : MonoBehaviour
     [SerializeField] private float currentTime;
     [SerializeField] private bool isTimerStart;
     [SerializeField] private TextMeshProUGUI timerTextUI;
+
+    private float maxTime;
+    private float endTime;
     
     [Header("Reference")]
     private EleDetector eleDetector;
+    private ComputerHackController computerHackController;
+    private UnlockLevelManager unlockLevelManager;
     private GameEventHandler gameEventHandler;
 
     #endregion
@@ -23,21 +28,26 @@ public class TimeController : MonoBehaviour
     {
         gameEventHandler = GameObject.Find("GameEvent").GetComponent<GameEventHandler>();
         eleDetector = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<EleDetector>();
+        computerHackController = 
+            GameObject.FindGameObjectWithTag("ComputerHack").GetComponent<ComputerHackController>();
+        unlockLevelManager = GameObject.Find("UnlockLevelManager").GetComponent<UnlockLevelManager>();
     }
 
     private void Start()
     {
         isTimerStart = true;
+        maxTime = currentTime;
     }
 
     private void Update()
     {
-        if (eleDetector.IsPlayerCatch)
+        if (eleDetector.IsPlayerCatch || computerHackController.IsComplete)
         {
             return;
         }
         
         TimerController();
+        SetWinningTime();
     }
 
     #endregion
@@ -81,7 +91,19 @@ public class TimeController : MonoBehaviour
             timerTextUI.color = Color.red;
         }
     }
-
+    
+    private void SetWinningTime()
+    {
+        var currentLevel = unlockLevelManager.TargetUnlockedLevel-1;
+        endTime = maxTime - currentTime;
+        
+        if (PlayerPrefs.GetInt(UnlockLevelController.LevelUnlockKey) == currentLevel)
+        {
+            PlayerPrefs.SetFloat(UnlockLevelController.
+                LevelTimeWinKey[currentLevel], endTime);
+        }
+    }
+    
     #endregion
     
 }

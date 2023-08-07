@@ -4,12 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneController : MonoSingleton<SceneController>
+public class MainMenuSceneManager : MonoSingleton<MainMenuSceneManager>
 {
     #region Variable
 
     [SerializeField] private RectTransform sceneFader;
-    [SerializeField] private int sceneNum;
+    private int sceneNum;
 
     #endregion
 
@@ -102,11 +102,15 @@ public class SceneController : MonoSingleton<SceneController>
             Time.timeScale = 1;
         });
     }
-        
+    
     private void LoadGame () => SceneManager.LoadScene (SceneManager.GetActiveScene().buildIndex);
     private void LoadNextLevel () => SceneManager.LoadScene (SceneManager.GetActiveScene().buildIndex + 1);
     private void LoadLevelScene () => SceneManager.LoadScene (sceneNum);
-    public void SetSceneNum(int num) => sceneNum = num;
+    public void SetSceneNum(int num)
+    {
+        sceneNum = num;
+        PlayerPrefs.SetInt(UnlockLevelController.LevelUnlockKey, sceneNum);
+    }
 
 
     #endregion

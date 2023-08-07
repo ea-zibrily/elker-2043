@@ -11,13 +11,14 @@ public class ComputerHackController : EnvironmentBase
     [Header("Hold Component")]
     [SerializeField] private Image fillBarUI;
     [SerializeField] private float fillBarSpeed;
-    [SerializeField] private bool isComplete;
+    [field: SerializeField] public bool IsComplete {get; private set;}
     private float maxFillBar;
     private float minFillBar;
     
     [Header("Reference")]
     private Animator holdPanelAnim;
     private GameEventHandler gameEventHandler;
+    private UnlockLevelManager unlockLevelManager;
 
     #endregion
 
@@ -27,6 +28,7 @@ public class ComputerHackController : EnvironmentBase
     {
         holdPanelAnim = GetComponentInChildren<Animator>();
         gameEventHandler = GameObject.Find("GameEvent").GetComponent<GameEventHandler>();
+        unlockLevelManager = GameObject.Find("UnlockLevelManager").GetComponent<UnlockLevelManager>();
     }
 
     private void Start()
@@ -37,7 +39,7 @@ public class ComputerHackController : EnvironmentBase
         minFillBar = 0f;
         
         fillBarUI.fillAmount = minFillBar;
-        isComplete = false;
+        IsComplete = false;
     }
 
     private void Update()
@@ -56,7 +58,7 @@ public class ComputerHackController : EnvironmentBase
            return;
         }
         
-        if (isComplete)
+        if (IsComplete)
         {
             return;
         }
@@ -87,15 +89,16 @@ public class ComputerHackController : EnvironmentBase
             
             fillBarUI.fillAmount = maxFillBar;
             holdPanelAnim.SetBool("IsHolding", false);
-            isComplete = true;
+            IsComplete = true;
             
+            unlockLevelManager.LevelUnlockEvent();
             gameEventHandler.GameWinEvent();
         }
     }
-
+    
     private IEnumerator ResetBar()
     {
-        isComplete = false;
+        IsComplete = false;
         holdPanelAnim.SetBool("IsHolding", false);
         yield return new WaitForSeconds(0.25f);
         

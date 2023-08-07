@@ -100,7 +100,7 @@ public class MainMenuManager : MonoBehaviour
     
     private IEnumerator OpenLevelScene(int levelNum)
     {
-        SceneController.Instance.SetSceneNum(levelNum);
+        MainMenuSceneManager.Instance.SetSceneNum(levelNum);
         levelSelectionAnimator.SetBool("IsOpen", false);
         yield return new WaitForSeconds(2f);
         

@@ -10,10 +10,10 @@ using UnityEngine.Serialization;
 public class GameManager : MonoBehaviour
 {
     #region Variable
-
+    
     [Header("Scene Component")]
     [SerializeField] private RectTransform sceneFader;
-
+    
     [Header("Game Over Component")] 
     [SerializeField] private float alarmTime;
     [SerializeField] private GameObject gameOverPanel;
@@ -154,7 +154,7 @@ public class GameManager : MonoBehaviour
         gameOverPanel.GetComponent<GameOverUIController>().SetTextPlayerCaught();
         gameOverPanel.SetActive(true);
     }
-
+    
     private IEnumerator PlayerWin()
     {
         eleController.StopEleMovement();
