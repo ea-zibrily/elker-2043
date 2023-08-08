@@ -16,6 +16,7 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] private GameObject mainMenuPanel;
     [SerializeField] private GameObject levelSelectionPanel;
     [SerializeField] private GameObject creditPanel;
+    [SerializeField] private GameObject howToPlayPanel;
     [SerializeField] private TextMeshProUGUI notificationTextUI;
     
     [Space]
@@ -136,6 +137,8 @@ public class MainMenuController : MonoBehaviour
     
     public void OpenCredit() => creditPanel.SetActive(true);
     public void CloseCredit() => creditPanel.SetActive(false);
+    public void OpenHowToPlay() => howToPlayPanel.SetActive(true);
+    public void CloseHowToPlay() => howToPlayPanel.SetActive(false);
 
 
     #endregion
