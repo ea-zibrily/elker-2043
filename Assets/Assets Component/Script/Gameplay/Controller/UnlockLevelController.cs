@@ -1,18 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
+using TMPro;
 
 public class UnlockLevelController : MonoBehaviour
 {
     #region Variable
-
+    
     [Header("Main Component")]
-    [SerializeField] private Button[] levelButton;
+    [SerializeField] private Button[] levelButtonUI;
     [SerializeField] private TextMeshProUGUI[] levelTimeWinTextUI;
-    private int numberOfUnlockedLevel;
+    [SerializeField] private int numberOfUnlockedLevel;
     public static string LevelUnlockKey {get; private set;}
     public static string[] LevelTimeWinKey {get; private set;}
 
@@ -68,19 +67,19 @@ public class UnlockLevelController : MonoBehaviour
     {
         for (int i = 0; i < numberOfUnlockedLevel; i++)
         {
-            levelButton[i].interactable = true;
+            levelButtonUI[i].interactable = true;
             levelTimeWinTextUI[i].text = PlayerPrefs.GetFloat(LevelTimeWinKey[i]).ToString("00.0") + " sec";
-            levelTimeWinTextUI[i].alpha = 1f;
+            levelTimeWinTextUI[i].color = Color.white;
         }
     }
     
     private void DeactivateLevel()
     {
-        for (int i = 0; i < numberOfUnlockedLevel; i++)
+        for (int i = 0; i < levelButtonUI.Length; i++)
         {
-            levelButton[i].interactable = false;
+            levelButtonUI[i].interactable = false;
             levelTimeWinTextUI[i].text = "00.0 sec";
-            levelTimeWinTextUI[i].alpha = 0.5f;
+            levelTimeWinTextUI[i].color = Color.grey;
         }
     }
 

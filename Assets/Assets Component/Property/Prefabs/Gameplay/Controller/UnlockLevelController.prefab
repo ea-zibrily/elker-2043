@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86c709566e37d1a46a3c6f316c2249cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelButton:
+  levelButtonUI:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -52,3 +52,4 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  numberOfUnlockedLevel: 0

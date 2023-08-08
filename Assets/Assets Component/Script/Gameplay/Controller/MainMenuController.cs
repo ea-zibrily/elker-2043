@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Playables;
 
-public class MainMenuManager : MonoBehaviour
+public class MainMenuController : MonoBehaviour
 {
     #region Variable
     
@@ -71,7 +71,7 @@ public class MainMenuManager : MonoBehaviour
     
     private IEnumerator OpenLevelSelectionPanel()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.3f);
         
         mainMenuAnimator.SetBool("IsOpen", false);
         yield return new WaitForSeconds(2.3f);
@@ -89,7 +89,7 @@ public class MainMenuManager : MonoBehaviour
     
     private IEnumerator OpenMainMenuPanel()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.3f);
         
         levelSelectionAnimator.SetBool("IsOpen", false);
         yield return new WaitForSeconds(2.3f);

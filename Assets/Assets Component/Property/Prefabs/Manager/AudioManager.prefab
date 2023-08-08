@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8710742283716026565
 MonoBehaviour:
@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - name: BGM_Main Menu
+  - name: BGM_MainMenu
     clip: {fileID: 8300000, guid: 2b22ad9156146f24aade4807a36ef1b0, type: 3}
     priority: 150
     volume: 0.7
