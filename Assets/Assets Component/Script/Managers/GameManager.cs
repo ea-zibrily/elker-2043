@@ -157,12 +157,15 @@ public class GameManager : MonoBehaviour
     
     private IEnumerator PlayerWin()
     {
+        yield return new WaitForSeconds(0.2f);
+        
         eleController.StopEleMovement();
         GameEventHandler.DisableGamePauseEvent();
         yield return new WaitForSeconds(0.3f);
         
         gameWinPanel.SetActive(true);
     }
+    
     private void StopGameActivities() => Time.timeScale = 0f;
     
     #endregion

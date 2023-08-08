@@ -24,7 +24,7 @@ public class UnlockLevelManager : MonoBehaviour
     {
         OnLevelUnlocked -= UnlockLevel;
     }
-
+    
     #endregion
 
     #region Tsukuyomi Callbacks

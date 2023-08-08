@@ -354,6 +354,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6429529171231174573, guid: 2d89b2462f3106944b6ecd3711ef6153, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7273840150413181861, guid: 2d89b2462f3106944b6ecd3711ef6153, type: 3}
       propertyPath: m_text
       value: Game Win
@@ -364,7 +368,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8394586747002873479, guid: 2d89b2462f3106944b6ecd3711ef6153, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6321546744950601139, guid: 2d89b2462f3106944b6ecd3711ef6153, type: 3}

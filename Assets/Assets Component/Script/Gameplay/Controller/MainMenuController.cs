@@ -137,5 +137,6 @@ public class MainMenuController : MonoBehaviour
     public void OpenCredit() => creditPanel.SetActive(true);
     public void CloseCredit() => creditPanel.SetActive(false);
 
+
     #endregion
 }

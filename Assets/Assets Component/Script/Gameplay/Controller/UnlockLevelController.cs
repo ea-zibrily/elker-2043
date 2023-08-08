@@ -11,16 +11,18 @@ public class UnlockLevelController : MonoBehaviour
     [Header("Main Component")]
     [SerializeField] private Button[] levelButtonUI;
     [SerializeField] private TextMeshProUGUI[] levelTimeWinTextUI;
-    [SerializeField] private int numberOfUnlockedLevel;
+    private int numberOfUnlockedLevel;
     public static string LevelUnlockKey {get; private set;}
     public static string[] LevelTimeWinKey {get; private set;}
-
+    
     #endregion
     
     #region MonoBehaviour Callbacks
 
     private void Start()
     {
+        PlayerPrefs.DeleteAll();
+        
         LevelUnlockKey = "LevelUnlock";
         LevelTimeWinKey = new string[]
         {

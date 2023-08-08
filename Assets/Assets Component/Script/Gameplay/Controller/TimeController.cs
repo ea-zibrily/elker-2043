@@ -94,14 +94,19 @@ public class TimeController : MonoBehaviour
     
     private void SetWinningTime()
     {
-        var currentLevel = unlockLevelManager.TargetUnlockedLevel-1;
+        // var currentLevel = unlockLevelManager.TargetUnlockedLevel-1;
+        // endTime = maxTime - currentTime;
+        //
+        // if (PlayerPrefs.GetInt(UnlockLevelController.LevelUnlockKey) == currentLevel)
+        // {
+        //     PlayerPrefs.SetFloat(UnlockLevelController.
+        //         LevelTimeWinKey[currentLevel-1], endTime);
+        // }
+        
+        var currentLevel = PlayerPrefs.GetInt(UnlockLevelController.LevelUnlockKey) - 1;
         endTime = maxTime - currentTime;
         
-        if (PlayerPrefs.GetInt(UnlockLevelController.LevelUnlockKey) == currentLevel)
-        {
-            PlayerPrefs.SetFloat(UnlockLevelController.
-                LevelTimeWinKey[currentLevel], endTime);
-        }
+        PlayerPrefs.SetFloat(UnlockLevelController.LevelTimeWinKey[currentLevel], endTime);
     }
     
     #endregion
