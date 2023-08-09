@@ -47,13 +47,13 @@ public class TimeController : MonoBehaviour
         }
         
         TimerController();
-        SetWinningTime();
+        // SetWinningTime();
     }
 
     #endregion
 
     #region Tsukuyomi Callbacks
-
+    
     private void TimerController()
     {
         if (!isTimerStart)
@@ -94,15 +94,6 @@ public class TimeController : MonoBehaviour
     
     private void SetWinningTime()
     {
-        // var currentLevel = unlockLevelManager.TargetUnlockedLevel-1;
-        // endTime = maxTime - currentTime;
-        //
-        // if (PlayerPrefs.GetInt(UnlockLevelController.LevelUnlockKey) == currentLevel)
-        // {
-        //     PlayerPrefs.SetFloat(UnlockLevelController.
-        //         LevelTimeWinKey[currentLevel-1], endTime);
-        // }
-        
         var currentLevel = PlayerPrefs.GetInt(UnlockLevelController.LevelUnlockKey) - 1;
         endTime = maxTime - currentTime;
         

@@ -35,7 +35,7 @@ public class RoomCameraController : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            cameraAnimator.SetBool("IsRoomTwo", true);
+            cameraAnimator.SetBool("IsRoomTwo", false);
         }
     }
 

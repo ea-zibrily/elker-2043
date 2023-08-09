@@ -63,6 +63,7 @@ public class GameManager : MonoBehaviour
     
     public void SceneMoveController(int gameCondition)
     {
+        Time.timeScale = 1;
         switch (gameCondition)
         {
             case 0:
@@ -97,7 +98,6 @@ public class GameManager : MonoBehaviour
         LeanTween.alpha (sceneFader, 0, 0);
         LeanTween.alpha (sceneFader, 1, 1f).setOnComplete (() => {
             SceneManager.LoadScene (0);
-            Time.timeScale = 1;
         });
     }
     
@@ -109,7 +109,6 @@ public class GameManager : MonoBehaviour
         LeanTween.alpha (sceneFader, 1, 1f).setOnComplete (() => {
             // Example for little pause before laoding the next scene
             Invoke ("LoadGame", 0.5f);
-            Time.timeScale = 1;
         });
     }
     private void OpenNextLevelScene()
@@ -165,7 +164,7 @@ public class GameManager : MonoBehaviour
         
         gameWinPanel.SetActive(true);
     }
-    
+
     private void StopGameActivities() => Time.timeScale = 0f;
     
     #endregion
