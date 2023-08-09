@@ -7,6 +7,7 @@ using UnityEngine.Serialization;
 public class EnemyPatrol : EnemyBase
 {
     [Header("Patrol Component")] 
+    [SerializeField] private float waitUntilMoveTime;
     [SerializeField] private Transform pointA;
     [SerializeField] private Transform pointB;
     private Transform currentPoint;
@@ -53,7 +54,7 @@ public class EnemyPatrol : EnemyBase
             currentPoint = pointB;
             isPointArea = true;
             
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(waitUntilMoveTime);
             EnemyFlip();
             isPointArea = false;
         }
@@ -63,7 +64,7 @@ public class EnemyPatrol : EnemyBase
             currentPoint = pointA;
             isPointArea = true;
             
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(waitUntilMoveTime);
             EnemyFlip();
             isPointArea = false;
         }

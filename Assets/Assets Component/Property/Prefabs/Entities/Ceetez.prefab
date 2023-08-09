@@ -141,7 +141,7 @@ MonoBehaviour:
   - {x: -0.56062794, y: -0.29432583, z: 0}
   m_ShapePathHash: 1426342917
   m_Mesh: {fileID: 0}
-  m_InstanceId: -2126
+  m_InstanceId: -1662
   m_LocalBounds:
     m_Center: {x: -0.2539239, y: 0.11205089, z: 0}
     m_Extent: {x: 0.7165332, y: 0.7978419, z: 0}
@@ -291,8 +291,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 2.2682998, y: -2.6705499, z: 0}
-    m_Extent: {x: 2.8007, y: 2.87495, z: 0}
+    m_Center: {x: 2.26755, y: -2.677, z: 0}
+    m_Extent: {x: 2.79145, y: 2.8701, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -421,5 +421,6 @@ MonoBehaviour:
   tempMoveSpeed: 0
   isCaughted: 0
   myAnim: {fileID: 0}
+  waitUntilMoveTime: 3
   pointA: {fileID: 0}
   pointB: {fileID: 0}
