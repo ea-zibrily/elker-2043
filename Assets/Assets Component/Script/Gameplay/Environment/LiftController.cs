@@ -17,6 +17,7 @@ public class LiftController : EnvironmentBase
     [Header("Reference")]
     private Animator myAnim;
     private Transform eleTransform;
+    private EleController eleController;
     private LiftEventHandler liftEventHandler;
 
     #endregion
@@ -26,6 +27,7 @@ public class LiftController : EnvironmentBase
     private void Awake()
     {
         eleTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        eleController = eleTransform.GetComponent<EleController>();
         myAnim = GetComponentInChildren<Animator>();
         liftEventHandler = GetComponentInChildren<LiftEventHandler>();
     }
@@ -64,7 +66,7 @@ public class LiftController : EnvironmentBase
 
     private void LiftAnimation()
     {
-        if (IsPlayerInside)
+        if (IsPlayerInside && eleController.IsCaught)
         {
             myAnim.SetBool("IsActive", true);
         }

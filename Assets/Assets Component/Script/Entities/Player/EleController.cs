@@ -16,7 +16,7 @@ public class EleController : MonoBehaviour
     public PlayerData playerDataSO;
     [SerializeField] private Vector2 playerMoveInput;
     [SerializeField] private bool isRight;
-    [HideInInspector] public bool isCaught;
+    public bool IsCaught {get; set;}
 
     [Header("Ground Checker Component")]
     [SerializeField] private Transform groundChecker;
@@ -72,7 +72,7 @@ public class EleController : MonoBehaviour
 
     private void EleMove()
     {
-        if (isCaught)
+        if (IsCaught)
         {
             return;
         }
@@ -125,13 +125,13 @@ public class EleController : MonoBehaviour
 
     public void ResumeEleMovement()
     {
-        isCaught = false;
+        IsCaught = false;
         eleDetector.gameObject.SetActive(true);
     }
 
     public void StopEleMovement()
     {
-        isCaught = true;
+        IsCaught = true;
         eleDetector.gameObject.SetActive(false);
         myRb.velocity = Vector2.zero;
         playerMoveInput.x = 0;

@@ -57,9 +57,18 @@ public class QuizzManager : MonoBehaviour
         computerNormalController.IsHackDone = false;
     }
 
+    private void CloseHackPanel()
+    {
+        for (int i = 0; i < descriptionPanelUI.Length; i++)
+        {
+            descriptionPanelUI[i].SetActive(false);
+        }
+    }
+    
     public void CloseComputerPanel()
     {
-        descriptionPanelUI[0].SetActive(false);
+        CloseHackPanel();
+        computerNormalController.ClosePromptPanel();
         eleController.ResumeEleMovement();
     }
 

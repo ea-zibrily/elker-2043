@@ -88,6 +88,13 @@ public class ComputerNormalController : EnvironmentBase
         promptPanelUI.SetActive(true);
         isPromptOpen = true;
     }
+    
+    public void ClosePromptPanel()
+    {
+        isComputerOpen = false;
+        isPromptOpen = false;
+        promptPanelUI.SetActive(false);
+    }
 
     #endregion
 }
