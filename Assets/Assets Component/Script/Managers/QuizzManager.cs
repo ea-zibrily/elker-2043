@@ -29,37 +29,46 @@ public class QuizzManager : MonoBehaviour
 
     private void OnEnable()
     {
-        quizEventHandler.OnHackSuccess += HackSuccess;
-        quizEventHandler.OnHackFailed += HackFailed;
+        quizEventHandler.OnHackSuccess += OpenHackSuccess;
+        quizEventHandler.OnHackFailed += OpenHackFailed;
     }
     
     private void OnDisable()
     {
-        quizEventHandler.OnHackSuccess -= HackSuccess;
-        quizEventHandler.OnHackFailed -= HackFailed;
+        quizEventHandler.OnHackSuccess -= OpenHackSuccess;
+        quizEventHandler.OnHackFailed -= OpenHackFailed;
     }
 
     #endregion
 
     #region Tsukuyomi Callbacks
     
-    private void HackSuccess()
+    private void OpenHackSuccess()
     {
         descriptionPanelUI[1].SetActive(true);
         descriptionPanelUI[2].SetActive(true);
         computerNormalController.IsHackDone = true;
     }
     
-    private void HackFailed()
+    private void OpenHackFailed()
     {
         descriptionPanelUI[1].SetActive(true);
         descriptionPanelUI[3].SetActive(true);
         computerNormalController.IsHackDone = false;
     }
+    
+    private void CloseHackPanel()
+    {
+        for (int i = 0; i < descriptionPanelUI.Length; i++)
+        {
+            descriptionPanelUI[i].SetActive(false);
+        }
+    }
 
     public void CloseComputerPanel()
     {
-        descriptionPanelUI[0].SetActive(false);
+        CloseHackPanel();
+        computerNormalController.ClosePromptPanel();
         eleController.ResumeEleMovement();
     }
 

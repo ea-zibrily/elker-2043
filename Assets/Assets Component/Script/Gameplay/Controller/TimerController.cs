@@ -96,14 +96,7 @@ public class TimerController : MonoBehaviour
         var currentLevel = PlayerPrefs.GetInt(UnlockLevelController.LevelUnlockKey) - 1;
         endTime = maxTime - currentTime;
         
-        if (eleDetector.IsPlayerCatch)
-        {
-            PlayerPrefs.SetFloat(UnlockLevelController.LevelTimeWinKey[currentLevel], 0.00f);
-        }
-        else if (computerHackController.IsComplete)
-        {
-            PlayerPrefs.SetFloat(UnlockLevelController.LevelTimeWinKey[currentLevel], endTime);
-        }
+        PlayerPrefs.SetFloat(UnlockLevelController.LevelTimeWinKey[currentLevel], endTime);
     }
     
     #endregion

@@ -62,7 +62,7 @@ public class MainMenuSceneManager : MonoSingleton<MainMenuSceneManager>
         
         LeanTween.alpha (sceneFader, 0, 0);
         LeanTween.alpha (sceneFader, 1, 1f).setOnComplete (() => {
-            SceneManager.LoadScene (0);
+            SceneManager.LoadScene (1);
             Time.timeScale = 1;
         });
     }
@@ -105,7 +105,7 @@ public class MainMenuSceneManager : MonoSingleton<MainMenuSceneManager>
     
     private void LoadGame () => SceneManager.LoadScene (SceneManager.GetActiveScene().buildIndex);
     private void LoadNextLevel () => SceneManager.LoadScene (SceneManager.GetActiveScene().buildIndex + 1);
-    private void LoadLevelScene () => SceneManager.LoadScene (sceneNum);
+    private void LoadLevelScene () => SceneManager.LoadScene (sceneNum + 1);
     public void SetSceneNum(int num)
     {
         sceneNum = num;

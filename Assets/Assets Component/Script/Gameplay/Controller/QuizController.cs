@@ -51,14 +51,6 @@ public class QuizController : MonoBehaviour
     
     #region Tsukuyomi Callbacks
     
-    private void AddQuestionAndAnswers()
-    {
-        for (int i = 0; i < tempQuestionAndAnswers.Count; i++)
-        {
-            questionAndAnswers.Add(tempQuestionAndAnswers[i]);
-        }
-    }
-    
     private void GenerateQuestion()
     {
         if(questionAndAnswers.Count > 0)
@@ -70,17 +62,7 @@ public class QuizController : MonoBehaviour
         }
         else
         {
-            if (quizScore < questionTotal)
-            {
-                quizzEventHandler.HackFailedEvent();
-                AddQuestionAndAnswers();
-                quizScore = 0;
-            }
-            else
-            {
-                quizzEventHandler.HackSuccessEvent();
-                tempQuestionAndAnswers.Clear();
-            }
+            quizzEventHandler.HackSuccessEvent();
         }
     }
     
@@ -99,9 +81,6 @@ public class QuizController : MonoBehaviour
         
         checkAnswer = tempAnswerInput == questionAndAnswers[currentQuestion].correctAnswer ? 
             StartCoroutine(CorrectAnswer()) : StartCoroutine(WrongAnswer());
-        
-        tempQuestionAndAnswers.Add(questionAndAnswers[currentQuestion]);
-        questionAndAnswers.RemoveAt(currentQuestion);
     }
     
     private IEnumerator CorrectAnswer()
@@ -110,6 +89,7 @@ public class QuizController : MonoBehaviour
 
         yield return new WaitForSeconds(0.5f);
         quizScore++;
+        questionAndAnswers.RemoveAt(currentQuestion);
         GenerateQuestion();
     }
     

@@ -19,6 +19,7 @@ public class ComputerHackController : EnvironmentBase
     private Animator holdPanelAnim;
     private GameEventHandler gameEventHandler;
     private UnlockLevelManager unlockLevelManager;
+    private EleController eleController;
 
     #endregion
 
@@ -29,6 +30,7 @@ public class ComputerHackController : EnvironmentBase
         holdPanelAnim = GetComponentInChildren<Animator>();
         gameEventHandler = GameObject.Find("GameEvent").GetComponent<GameEventHandler>();
         unlockLevelManager = GameObject.Find("UnlockLevelManager").GetComponent<UnlockLevelManager>();
+        eleController = GameObject.FindGameObjectWithTag("Player").GetComponent<EleController>();
     }
 
     private void Start()

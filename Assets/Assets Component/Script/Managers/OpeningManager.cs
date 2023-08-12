@@ -64,7 +64,7 @@ public class OpeningManager : MonoBehaviour
             return;
         }
         
-        if (currentTime < 60.0f)
+        if (currentTime < 25.0f)
         {
             currentTime += Time.deltaTime;
         }

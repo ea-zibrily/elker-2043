@@ -19,7 +19,7 @@ public class UnlockLevelManager : MonoBehaviour
     {
         OnLevelUnlocked += UnlockLevel;
     }
-
+    
     private void OnDisable()
     {
         OnLevelUnlocked -= UnlockLevel;

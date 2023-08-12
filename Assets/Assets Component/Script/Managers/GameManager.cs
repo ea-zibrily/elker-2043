@@ -69,12 +69,15 @@ public class GameManager : MonoBehaviour
         switch (gameCondition)
         {
             case 0:
+                Time.timeScale = 1;
                 OpenGameScene();
                 break;
             case 1:
+                Time.timeScale = 1;
                 OpenMenuScene();
                 break;
             case 2:
+                Time.timeScale = 1;
                 OpenNextLevelScene();
                 break;
             default:
@@ -99,7 +102,7 @@ public class GameManager : MonoBehaviour
         
         LeanTween.alpha (sceneFader, 0, 0);
         LeanTween.alpha (sceneFader, 1, 1f).setOnComplete (() => {
-            SceneManager.LoadScene (0);
+            SceneManager.LoadScene (1);
         });
     }
     
