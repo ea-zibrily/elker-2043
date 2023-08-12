@@ -29,7 +29,7 @@ public class MainMenuController : MonoBehaviour
     
     [Header("BGM Component")]
     [SerializeField] private float decreaseVolumeSpeed;
-    [SerializeField] private float currentVolume;
+    private float currentVolume;
     private bool isDecreaseVolume;
     
     [Header("Reference")]
