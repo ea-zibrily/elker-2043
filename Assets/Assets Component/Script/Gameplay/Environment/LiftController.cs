@@ -77,7 +77,7 @@ public class LiftController : EnvironmentBase
     private void LiftTeleport()
     {
         eleTransform.position = liftPoint.position;
-        FindObjectOfType<AudioManager>().Play(SoundEnum.SFX_Lift);
+        FindObjectOfType<AudioManager>().PlayAudio(SoundEnum.SFX_Lift);
     }
     private void SetLiftOpen() => isLiftOpen = true;
     private void SetLiftClose() => isLiftOpen = false;

@@ -11,6 +11,7 @@ public class LockController : MonoBehaviour
     [SerializeField] private string lockKey;
     [SerializeField] private string tempKey;
     [SerializeField] private TextMeshProUGUI lockKeyTextUI;
+    [SerializeField] private TextMeshProUGUI successCodeKeyTextUI;
     public bool IsLockOpen {get; private set;}
 
     #endregion
@@ -25,6 +26,7 @@ public class LockController : MonoBehaviour
     private void Update()
     {
         lockKeyTextUI.text = tempKey;
+        successCodeKeyTextUI.text = "-" + lockKey + "-"; 
         CheckLockKey();
     }
 

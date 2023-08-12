@@ -38,7 +38,6 @@ public class EnemyMoveAlong : EnemyBase
         }
         
         transform.Translate(Vector2.left * (tempMoveSpeed * Time.deltaTime));
-        FindObjectOfType<AudioManager>().Play(SoundEnum.SFX_Rohox);
         if (IsWall())
         {
             EnemyFlip();

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 #region RequireComponent
 
@@ -26,6 +27,7 @@ public class EleController : MonoBehaviour
     private Rigidbody2D myRb;
     private Animator myAnim;
     private EleDetector eleDetector;
+    private EleEventHandler eleEventHandler;
 
     #region MonoBehaviour Callbacks
 
@@ -34,8 +36,19 @@ public class EleController : MonoBehaviour
         myRb = GetComponent<Rigidbody2D>();
         myAnim = GetComponentInChildren<Animator>();
         eleDetector = GetComponentInChildren<EleDetector>();
+        eleEventHandler = GetComponentInChildren<EleEventHandler>();
+    }
+
+    private void OnEnable()
+    {
+        eleEventHandler.OnFootStepSound += PlayFootstepSound;
     }
     
+    private void OnDisable()
+    {
+        eleEventHandler.OnFootStepSound -= PlayFootstepSound;
+    }
+
     private void Start()
     {
         isRight = true;
@@ -44,7 +57,6 @@ public class EleController : MonoBehaviour
     private void FixedUpdate()
     {
         EleMove();
-        
     }
 
     private void Update()
@@ -71,7 +83,6 @@ public class EleController : MonoBehaviour
         playerMoveInput.Normalize();
         
         myRb.velocity = new Vector2(playerMoveInput.x * playerDataSO.PlayerSpeed, myRb.velocity.y);
-        FindObjectOfType<AudioManager>().Play(SoundEnum.SFX_Ele);
     }
 
     private void EleDirection()
@@ -97,7 +108,7 @@ public class EleController : MonoBehaviour
             myAnim.SetBool("isMove", false);
         }
     }
-
+    
     private void EleFlip()
     {
         isRight = !isRight;
@@ -137,6 +148,13 @@ public class EleController : MonoBehaviour
         Gizmos.DrawWireSphere(groundChecker.position, groundCheckerRadius);
     }
 
+    private void PlayFootstepSound()
+    {
+        if (IsGround())
+        {
+            FindObjectOfType<AudioManager>().PlayAudio(SoundEnum.SFX_Ele);
+        }
+    }
    
 
     #endregion

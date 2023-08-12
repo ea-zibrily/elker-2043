@@ -60,7 +60,7 @@ public class GameUIController : MonoBehaviour
             {
                 isAddingRichTextTag = true;
                 gameOverTextUI.text += letter;
-                FindObjectOfType<AudioManager>().Play(SoundEnum.SFX_Typing);
+                FindObjectOfType<AudioManager>().PlayAudio(SoundEnum.SFX_Typing);
                 if (letter == '>')
                 {
                     isAddingRichTextTag = false;
@@ -69,7 +69,7 @@ public class GameUIController : MonoBehaviour
             else
             {
                 gameOverTextUI.text += letter;
-                FindObjectOfType<AudioManager>().Play(SoundEnum.SFX_Typing);
+                FindObjectOfType<AudioManager>().PlayAudio(SoundEnum.SFX_Typing);
                 yield return new WaitForSeconds(displayTextSpeed);
             }
         }

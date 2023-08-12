@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneFader: {fileID: 0}
-  alarmTime: 2.5
+  alarmTime: 3.5
   gameOverPanel: {fileID: 0}
+  gameWinPanel: {fileID: 0}
   alarmLampPanel: {fileID: 0}

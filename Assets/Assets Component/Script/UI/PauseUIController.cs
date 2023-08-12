@@ -39,6 +39,7 @@ public class PauseUIController : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            FindObjectOfType<AudioManager>().PlayAudio(SoundEnum.SFX_Click);
             if (isGamePause)
             {
                 ResumeGame();

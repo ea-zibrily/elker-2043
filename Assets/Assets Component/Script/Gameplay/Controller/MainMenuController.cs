@@ -27,6 +27,11 @@ public class MainMenuController : MonoBehaviour
     private bool isIdle;
     private bool isMainMenuOpen;
     
+    [Header("BGM Component")]
+    [SerializeField] private float decreaseVolumeSpeed;
+    [SerializeField] private float currentVolume;
+    private bool isDecreaseVolume;
+    
     [Header("Reference")]
     private Animator mainMenuAnimator;
     private Animator levelSelectionAnimator;
@@ -50,11 +55,20 @@ public class MainMenuController : MonoBehaviour
         notificationTextUI.text = notificationText;
         notificationTextUI.gameObject.SetActive(false);
         
-        CloseCredit();
+        creditPanel.SetActive(false);
+        howToPlayPanel.SetActive(false);
+        
+        currentVolume = FindObjectOfType<AudioManager>().GetVolume(SoundEnum.BGM_MainMenu);
+        isDecreaseVolume = false;
     }
     
     private void Update()
     {
+        if (isDecreaseVolume)
+        {
+            DecreaseMusicVolume();
+        }
+        
         if (Input.GetKeyDown(KeyCode.Escape) && !isMainMenuOpen)
         {
             StartCoroutine(OpenMainMenuPanel());
@@ -73,6 +87,7 @@ public class MainMenuController : MonoBehaviour
     
     private IEnumerator OpenLevelSelectionPanel()
     {
+        FindObjectOfType<AudioManager>().PlayAudio(SoundEnum.SFX_Click);
         yield return new WaitForSeconds(0.3f);
         
         mainMenuAnimator.SetBool("IsOpen", false);
@@ -91,6 +106,7 @@ public class MainMenuController : MonoBehaviour
     
     private IEnumerator OpenMainMenuPanel()
     {
+        FindObjectOfType<AudioManager>().PlayAudio(SoundEnum.SFX_Click);
         yield return new WaitForSeconds(0.3f);
         
         levelSelectionAnimator.SetBool("IsOpen", false);
@@ -102,6 +118,8 @@ public class MainMenuController : MonoBehaviour
     
     private IEnumerator OpenLevelScene(int levelNum)
     {
+        FindObjectOfType<AudioManager>().PlayAudio(SoundEnum.SFX_Click);
+        isDecreaseVolume = true;
         MainMenuSceneManager.Instance.SetSceneNum(levelNum);
         levelSelectionAnimator.SetBool("IsOpen", false);
         yield return new WaitForSeconds(2f);
@@ -135,12 +153,43 @@ public class MainMenuController : MonoBehaviour
 
     public void OpenLevelSelection() => StartCoroutine(OpenLevelSelectionPanel());
     public void OpenGameLevel(int levelNum) => StartCoroutine(OpenLevelScene(levelNum));
+
+    public void OpenCredit()
+    {
+        FindObjectOfType<AudioManager>().PlayAudio(SoundEnum.SFX_Click);
+        creditPanel.SetActive(true);
+    }
+
+    public void CloseCredit()
+    {
+        FindObjectOfType<AudioManager>().PlayAudio(SoundEnum.SFX_Click);
+        creditPanel.SetActive(false);
+    }
+     
+    public void OpenHowToPlay()
+    {
+        FindObjectOfType<AudioManager>().PlayAudio(SoundEnum.SFX_Click);
+        howToPlayPanel.SetActive(true);
+    }
+
+    public void CloseHowToPlay()
+    {
+        FindObjectOfType<AudioManager>().PlayAudio(SoundEnum.SFX_Click);
+        howToPlayPanel.SetActive(false);
+    }
+
+    private void DecreaseMusicVolume()
+    {
+        if (currentVolume > 0.01f)
+        {
+            currentVolume -= decreaseVolumeSpeed * Time.deltaTime;
+            FindObjectOfType<AudioManager>().SetVolume(SoundEnum.BGM_MainMenu, currentVolume);
+        }
+        else
+        {
+            isDecreaseVolume = false;
+        }
+    }
     
-    public void OpenCredit() => creditPanel.SetActive(true);
-    public void CloseCredit() => creditPanel.SetActive(false);
-    public void OpenHowToPlay() => howToPlayPanel.SetActive(true);
-    public void CloseHowToPlay() => howToPlayPanel.SetActive(false);
-
-
     #endregion
 }

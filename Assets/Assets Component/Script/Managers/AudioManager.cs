@@ -34,7 +34,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void Play(SoundEnum soundName)
+    public void PlayAudio(SoundEnum soundName)
     {
         Sound _sound = Array.Find(sounds, sound => sound.name == soundName.ToString());
         if (_sound == null)
@@ -44,24 +44,36 @@ public class AudioManager : MonoBehaviour
         }
         
         _sound.source.Play();
+        Debug.Log($"Sound: {soundName} playing!");
     }
-
-    public void Stop(SoundEnum soundName)
+    
+    public void StopAudio(SoundEnum soundName)
     {
         Sound _sound = Array.Find(sounds, sound => sound.name == soundName.ToString());
-
+        
         _sound.source.Stop();
+        Debug.Log($"Sound: {soundName} stops!");
     }
-
-    public void Pause(SoundEnum soundName)
+    
+    public void PauseAudio(SoundEnum soundName)
     {
         Sound _sound = Array.Find(sounds, sound => sound.name == soundName.ToString());
         
         _sound.source.Pause();
     }
-
-    public void VolumeEdit(float value)
+    
+    public void SetVolume(SoundEnum soundName, float value)
     {
-        Sound _sound = Array.Find(sounds, sound => sound.volume == value);
+        Sound _sound = Array.Find(sounds, sound => sound.name == soundName.ToString());
+        
+        _sound.source.volume = value;
     }
+    
+    public float GetVolume(SoundEnum soundName)
+    {
+        Sound _sound = Array.Find(sounds, sound => sound.name == soundName.ToString());
+        
+        return _sound.volume;
+    }
+    
 }

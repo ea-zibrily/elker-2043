@@ -48,5 +48,10 @@ MonoBehaviour:
   idleMaxTime: 10
   mainMenuPanel: {fileID: 0}
   levelSelectionPanel: {fileID: 0}
+  creditPanel: {fileID: 0}
+  howToPlayPanel: {fileID: 0}
   notificationTextUI: {fileID: 0}
   elePlayableDirector: {fileID: 0}
+  currentVolume: 0
+  decreaseVolumeSpeed: 0.153
+  isDecreaseVolume: 0

@@ -1,8 +1,9 @@
 ﻿using System;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class TimeController : MonoBehaviour
+public class TimerController : MonoBehaviour
 {
     #region Variable
     
@@ -17,7 +18,6 @@ public class TimeController : MonoBehaviour
     [Header("Reference")]
     private EleDetector eleDetector;
     private ComputerHackController computerHackController;
-    private UnlockLevelManager unlockLevelManager;
     private GameEventHandler gameEventHandler;
 
     #endregion
@@ -30,7 +30,6 @@ public class TimeController : MonoBehaviour
         eleDetector = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<EleDetector>();
         computerHackController = 
             GameObject.FindGameObjectWithTag("ComputerHack").GetComponent<ComputerHackController>();
-        unlockLevelManager = GameObject.Find("UnlockLevelManager").GetComponent<UnlockLevelManager>();
     }
 
     private void Start()
@@ -46,15 +45,15 @@ public class TimeController : MonoBehaviour
             return;
         }
         
-        TimerController();
-        // SetWinningTime();
+        StartTimer();
+        SetWinningTime();
     }
 
     #endregion
 
     #region Tsukuyomi Callbacks
     
-    private void TimerController()
+    private void StartTimer()
     {
         if (!isTimerStart)
         {
@@ -98,6 +97,11 @@ public class TimeController : MonoBehaviour
         endTime = maxTime - currentTime;
         
         PlayerPrefs.SetFloat(UnlockLevelController.LevelTimeWinKey[currentLevel], endTime);
+        if (eleDetector.IsPlayerCatch)
+        {
+            PlayerPrefs.SetFloat(UnlockLevelController.LevelTimeWinKey[currentLevel], 0.00f);
+
+        }
     }
     
     #endregion

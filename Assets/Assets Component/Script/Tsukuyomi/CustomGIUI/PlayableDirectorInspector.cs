@@ -1,12 +1,16 @@
 ﻿using System.Linq;
+
+#if UNITY_EDITOR
 using UnityEditor;
 using UnityEditor.Timeline;
+#endif
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
 
 namespace Tsukuyomi.CustomGIUI
 {
+    #if UNITY_EDITOR
     public class PlayableDirectorInspector : UnityEditor.Editor
     {
         private TimelineAsset[] _timelineAssets;
@@ -44,5 +48,6 @@ namespace Tsukuyomi.CustomGIUI
                 GUILayout.EndHorizontal();
             }
         }
-    }
+    }  
+    #endif
 }

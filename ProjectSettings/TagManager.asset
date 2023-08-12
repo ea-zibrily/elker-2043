@@ -9,6 +9,7 @@ TagManager:
   - EnemyLighting
   - ComputerNormal
   - ComputerHack
+  - AudioManager
   layers:
   - Default
   - TransparentFX

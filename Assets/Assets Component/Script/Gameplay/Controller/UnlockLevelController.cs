@@ -21,8 +21,6 @@ public class UnlockLevelController : MonoBehaviour
 
     private void Start()
     {
-        PlayerPrefs.DeleteAll();
-        
         LevelUnlockKey = "LevelUnlock";
         LevelTimeWinKey = new string[]
         {

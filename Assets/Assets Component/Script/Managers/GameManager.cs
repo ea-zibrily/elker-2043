@@ -63,7 +63,9 @@ public class GameManager : MonoBehaviour
     
     public void SceneMoveController(int gameCondition)
     {
+        FindObjectOfType<AudioManager>().PlayAudio(SoundEnum.SFX_Click);
         Time.timeScale = 1;
+        
         switch (gameCondition)
         {
             case 0:
@@ -132,6 +134,7 @@ public class GameManager : MonoBehaviour
     
     private IEnumerator TimerEnd()
     {
+        FindObjectOfType<AudioManager>().StopAudio(SoundEnum.BGM_Ingame);
         eleController.StopEleMovement();
         GameEventHandler.DisableGamePauseEvent();
         yield return new WaitForSeconds(0.3f);
@@ -142,13 +145,14 @@ public class GameManager : MonoBehaviour
     
     private IEnumerator PlayerCatch()
     {
+        FindObjectOfType<AudioManager>().StopAudio(SoundEnum.BGM_Ingame);
         eleController.StopEleMovement();
         GameEventHandler.DisableGamePauseEvent();
         alarmLampPanel.SetActive(true);
-        FindObjectOfType<AudioManager>().Play(SoundEnum.SFX_Alarm);
+        FindObjectOfType<AudioManager>().PlayAudio(SoundEnum.SFX_Alarm);
         yield return new WaitForSeconds(alarmTime);
         
-        FindObjectOfType<AudioManager>().Stop(SoundEnum.SFX_Alarm);
+        FindObjectOfType<AudioManager>().StopAudio(SoundEnum.SFX_Alarm);
         alarmLampPanel.SetActive(false);
         gameOverPanel.GetComponent<GameOverUIController>().SetTextPlayerCaught();
         gameOverPanel.SetActive(true);
@@ -158,6 +162,7 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(0.2f);
         
+        FindObjectOfType<AudioManager>().StopAudio(SoundEnum.BGM_Ingame);
         eleController.StopEleMovement();
         GameEventHandler.DisableGamePauseEvent();
         yield return new WaitForSeconds(0.3f);
